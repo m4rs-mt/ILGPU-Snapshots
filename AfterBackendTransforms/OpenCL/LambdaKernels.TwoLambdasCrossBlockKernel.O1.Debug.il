@@ -1,0 +1,36 @@
+; stage: AfterBackendTransforms  backend: OpenCL  opt: O1
+; module: TwoLambdasCrossBlockKernel  [intptr: i64]
+
+define void @TwoLambdasCrossBlockKernel(i32 %p0, i32 %p1, ptr<i32> addrspace(global) %p2, i64 %p3, i64 %p4, i8 %p5) {
+entry:
+  %0 = icmp sge i64 %p4, -2147483648
+  %1 = icmp sle i64 %p4, 2147483647
+  %2 = and i1 %0, %1
+  %3 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  call void @ilgpu.debug.assert(i1 %2, ptr %3)
+  %4 = icmp sge i32 %p0, 0
+  %5 = trunc i64 %p4 to i32
+  %6 = icmp slt i32 %p0, %5
+  %7 = and i1 %4, %6
+  %8 = icmp eq i32 %p0, 0
+  %9 = icmp eq i32 %5, 0
+  %10 = and i1 %8, %9
+  %11 = or i1 %7, %10
+  %12 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  call void @ilgpu.debug.assert(i1 %11, ptr %12)
+  %13 = getelementptr i32, ptr %p2, i32 %p0
+  %14 = icmp sgt i32 %p1, 0
+  %15 = select i1 %14, i32 %p0, i32 0
+  %16 = add i32 %15, 1
+  %17 = icmp sle i32 %p1, 0
+  %18 = or i1 %17, %14
+  %19 = icmp sgt i32 %p1, 0
+  %20 = and i1 %18, %19
+  %21 = select i1 %20, i32 %p0, i32 1
+  %22 = shl i32 %21, 1
+  %23 = add i32 %16, %22
+  store i32 %23, ptr %13
+  ret void
+
+}
+

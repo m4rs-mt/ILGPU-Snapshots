@@ -7,61 +7,53 @@
 
 define void @NestedLoopKernel(i32 %p0, %struct.1 %p1) {
 entry:
-  %0 = extractvalue %struct.1 %p1, 0
-  %1 = extractvalue %struct.1 %p1, 1
-  %2 = extractvalue %struct.1 %p1, 2
-  %3 = { %view.i32 %0, i64 %1, i8 %2 }  ; %struct.1
-  %4 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %5 = icmp sge i32 %p0, 0
-  %6 = icmp eq i32 %p0, 0
-  %7 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %0 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %1 = icmp sge i32 %p0, 0
+  %2 = icmp eq i32 %p0, 0
+  %3 = call ptr @ilgpu.string("X_index_out_of_bounds")
   br label %bb1
 
 bb1:
   br label %bb2
 
 bb2:
-  %8 = phi i32 [ 0, %bb1 ], [ %11, %bb6 ]
-  %9 = phi i32 [ 0, %bb1 ], [ %31, %bb6 ]
-  %10 = phi %struct.1 [ %3, %bb1 ], [ %15, %bb6 ]
-  %11 = add i32 %8, 1
-  %12 = extractvalue %struct.1 %10, 0
-  %13 = extractvalue %struct.1 %10, 1
-  %14 = extractvalue %struct.1 %10, 2
-  %15 = { %view.i32 %12, i64 %13, i8 %14 }  ; %struct.1
-  %16 = icmp slt i32 %8, 4
-  %17 = extractvalue %struct.1 %10, 1
-  %18 = icmp sge i64 %17, -2147483648
-  %19 = icmp sle i64 %17, 2147483647
-  %20 = and i1 %18, %19
-  %21 = trunc i64 %17 to i32
-  %22 = icmp slt i32 %p0, %21
-  %23 = and i1 %5, %22
-  %24 = icmp eq i32 %21, 0
-  %25 = and i1 %6, %24
-  %26 = or i1 %23, %25
-  %27 = extractvalue %struct.1 %10, 0
-  %28 = getelementptr i32, ptr %27, i32 %p0
-  %29 = shl i32 %8, 2
-  br i1 %16, label %bb4, label %bb3
+  %4 = phi i32 [ 0, %bb1 ], [ %7, %bb6 ]
+  %5 = phi i32 [ 0, %bb1 ], [ %23, %bb6 ]
+  %6 = phi %struct.1 [ %p1, %bb1 ], [ %6, %bb6 ]
+  %7 = add i32 %4, 1
+  %8 = icmp slt i32 %4, 4
+  %9 = extractvalue %struct.1 %6, 1
+  %10 = icmp sge i64 %9, -2147483648
+  %11 = icmp sle i64 %9, 2147483647
+  %12 = and i1 %10, %11
+  %13 = trunc i64 %9 to i32
+  %14 = icmp slt i32 %p0, %13
+  %15 = and i1 %1, %14
+  %16 = icmp eq i32 %13, 0
+  %17 = and i1 %2, %16
+  %18 = or i1 %15, %17
+  %19 = extractvalue %struct.1 %6, 0
+  %20 = getelementptr i32, ptr %19, i32 %p0
+  %21 = shl i32 %4, 2
+  br i1 %8, label %bb4, label %bb3
 
 bb3:
-  call void @ilgpu.debug.assert(i1 %20, ptr %4)
-  call void @ilgpu.debug.assert(i1 %26, ptr %7)
-  store i32 %9, ptr %28
+  call void @ilgpu.debug.assert(i1 %12, ptr %0)
+  call void @ilgpu.debug.assert(i1 %18, ptr %3)
+  store i32 %5, ptr %20
   ret void
 
 bb4:
   br label %bb5
 
 bb5:
-  %30 = phi i32 [ 0, %bb4 ], [ %32, %bb7 ]
-  %31 = phi i32 [ %9, %bb4 ], [ %34, %bb7 ]
-  %32 = add i32 %30, 1
-  %33 = add i32 %29, %30
-  %34 = add i32 %31, %33
-  %35 = icmp slt i32 %30, 4
-  br i1 %35, label %bb7, label %bb6
+  %22 = phi i32 [ 0, %bb4 ], [ %24, %bb7 ]
+  %23 = phi i32 [ %5, %bb4 ], [ %26, %bb7 ]
+  %24 = add i32 %22, 1
+  %25 = add i32 %21, %22
+  %26 = add i32 %23, %25
+  %27 = icmp slt i32 %22, 4
+  br i1 %27, label %bb7, label %bb6
 
 bb6:
   br label %bb2

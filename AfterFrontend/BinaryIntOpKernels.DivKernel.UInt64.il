@@ -30,10 +30,10 @@ bb1:
 
 define i64 @System.Numerics.IDivisionOperators_System.UInt64_System.UInt64_System.UInt64_.op_Division(i64 %p0, i64 %p1) {
 entry:
-  %0 = udiv i64 %p0, %p1
   br label %bb1
 
 bb1:
+  %0 = udiv i64 %p0, %p1
   ret i64 %0
 
 }

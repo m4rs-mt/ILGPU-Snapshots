@@ -32,11 +32,11 @@ define i16 @System.Numerics.IDivisionOperators_System.UInt16_System.UInt16_Syste
 entry:
   %0 = zext i16 %p0 to i32
   %1 = zext i16 %p1 to i32
-  %2 = sdiv i32 %0, %1
-  %3 = trunc i32 %2 to i16
   br label %bb1
 
 bb1:
+  %2 = sdiv i32 %0, %1
+  %3 = trunc i32 %2 to i16
   ret i16 %3
 
 }

@@ -1,0 +1,47 @@
+; stage: AfterBackendTransforms  backend: ROCm  opt: O0
+; module: TwoLambdasCrossBlockKernel  [intptr: i64]
+
+%struct.0 = type { ptr<i32> addrspace(global), i64 }
+%struct.1 = type { ptr<i32> addrspace(global), i64, i64, i8 }
+
+define void @TwoLambdasCrossBlockKernel(i32 %p0, %struct.1 %p1, i32 %p2) {
+entry:
+  %0 = icmp sgt i32 %p2, 0
+  %1 = icmp sgt i32 %p2, 0
+  %2 = extractvalue %struct.1 %p1, 0 [Span: 2]
+  %3 = extractvalue %struct.0 %2, 0
+  %4 = getelementptr i32, ptr %3, i32 %p0
+  br i1 %0, label %bb2, label %bb1
+
+bb1:
+  br label %bb4
+
+bb2:
+  br label %bb3
+
+bb3:
+  br label %bb4
+
+bb4:
+  %5 = phi i32 [ 0, %bb1 ], [ %p0, %bb3 ]
+  %6 = add i32 %5, 1
+  br i1 %1, label %bb6, label %bb5
+
+bb5:
+  br label %bb8
+
+bb6:
+  br label %bb7
+
+bb7:
+  br label %bb8
+
+bb8:
+  %7 = phi i32 [ 1, %bb5 ], [ %p0, %bb7 ]
+  %8 = shl i32 %7, 1
+  %9 = add i32 %6, %8
+  store i32 %9, ptr %4
+  ret void
+
+}
+

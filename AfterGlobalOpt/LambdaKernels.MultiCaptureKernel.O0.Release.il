@@ -13,7 +13,6 @@ entry:
   %0 = alloca %struct.1, i32 1
   store %struct.1 %p1, ptr %0
   %1 = call ptr<%struct.2> addrspace(local) @ilgpu.gc_init(@g0)
-  call void @.ctor()
   %2 = getelementptr inbounds %struct.2, ptr %1, i32 0, i32 0
   store i32 %p2, ptr %2
   %3 = getelementptr inbounds %struct.2, ptr %1, i32 0, i32 1
@@ -98,12 +97,6 @@ entry:
   %0 = getelementptr inbounds %struct.0, ptr %p0, i32 0, i32 0
   %1 = load %view.i32, ptr %0
   ret %view.i32 %1
-
-}
-
-define void @.ctor() {
-entry:
-  ret void
 
 }
 

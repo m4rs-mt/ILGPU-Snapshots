@@ -27,189 +27,189 @@ entry:
   %16 = call ptr @ilgpu.string("32_bit_index_out_of_range")
   %17 = extractvalue %struct.0 %p0, 0
   %18 = sext i32 %p1 to i64
-  %19 = sdiv i64 %17, %18
-  %20 = trunc i64 %19 to i32
-  %21 = shl i32 %20, 1
-  %22 = extractvalue %struct.0 %p0, 1
-  %23 = ashr i32 %22, 1
-  %24 = add i32 %21, %23
-  %25 = trunc i64 %p14 to i32
-  %26 = icmp sge i32 %24, %25
-  %27 = icmp sge i64 %p14, -2147483648
-  %28 = icmp sle i64 %p14, 2147483647
-  %29 = and i1 %27, %28
-  %30 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %31 = icmp sge i64 %p15, -2147483648
-  %32 = icmp sle i64 %p15, 2147483647
-  %33 = and i1 %31, %32
-  %34 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %35 = extractvalue %struct.0 %p0, 0
-  %36 = sext i32 %p1 to i64
-  %37 = srem i64 %35, %36
-  %38 = trunc i64 %37 to i32
-  %39 = shl i32 %38, 1
-  %40 = extractvalue %struct.0 %p0, 1
-  %41 = srem i32 %40, 2
-  %42 = add i32 %39, %41
-  %43 = trunc i64 %p15 to i32
-  %44 = icmp slt i32 %42, %43
-  %45 = icmp sge i64 %p14, -2147483648
-  %46 = icmp sle i64 %p14, 2147483647
-  %47 = and i1 %45, %46
-  %48 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %49 = icmp sge i64 %p15, -2147483648
-  %50 = icmp sle i64 %p15, 2147483647
+  %19 = extractvalue %struct.0 %p0, 1
+  %20 = ashr i32 %19, 1
+  %21 = trunc i64 %p14 to i32
+  %22 = icmp sge i64 %p14, -2147483648
+  %23 = icmp sle i64 %p14, 2147483647
+  %24 = and i1 %22, %23
+  %25 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %26 = icmp sge i64 %p15, -2147483648
+  %27 = icmp sle i64 %p15, 2147483647
+  %28 = and i1 %26, %27
+  %29 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %30 = extractvalue %struct.0 %p0, 0
+  %31 = sext i32 %p1 to i64
+  %32 = extractvalue %struct.0 %p0, 1
+  %33 = srem i32 %32, 2
+  %34 = trunc i64 %p15 to i32
+  %35 = icmp sge i64 %p14, -2147483648
+  %36 = icmp sle i64 %p14, 2147483647
+  %37 = and i1 %35, %36
+  %38 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %39 = icmp sge i64 %p15, -2147483648
+  %40 = icmp sle i64 %p15, 2147483647
+  %41 = and i1 %39, %40
+  %42 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %43 = trunc i64 %p14 to i32
+  %44 = icmp eq i32 %43, 0
+  %45 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %46 = trunc i64 %p15 to i32
+  %47 = icmp eq i32 %46, 0
+  %48 = call ptr @ilgpu.string("Y_index_out_of_bounds")
+  %49 = icmp sge i32 %20, 0
+  %50 = icmp slt i32 %20, 2
   %51 = and i1 %49, %50
-  %52 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %53 = icmp sge i32 %24, 0
-  %54 = trunc i64 %p14 to i32
-  %55 = icmp slt i32 %24, %54
-  %56 = and i1 %53, %55
-  %57 = icmp eq i32 %24, 0
-  %58 = icmp eq i32 %54, 0
+  %52 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %53 = icmp sge i32 %33, 0
+  %54 = icmp slt i32 %33, 2
+  %55 = and i1 %53, %54
+  %56 = call ptr @ilgpu.string("Y_index_out_of_bounds")
+  %57 = icmp sge i64 %p4, -2147483648
+  %58 = icmp sle i64 %p4, 2147483647
   %59 = and i1 %57, %58
-  %60 = or i1 %56, %59
-  %61 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %62 = icmp sge i32 %42, 0
-  %63 = trunc i64 %p15 to i32
-  %64 = icmp slt i32 %42, %63
-  %65 = and i1 %62, %64
-  %66 = icmp eq i32 %42, 0
-  %67 = icmp eq i32 %63, 0
-  %68 = and i1 %66, %67
-  %69 = or i1 %65, %68
+  %60 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %61 = icmp sge i64 %p5, -2147483648
+  %62 = icmp sle i64 %p5, 2147483647
+  %63 = and i1 %61, %62
+  %64 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %65 = trunc i64 %p4 to i32
+  %66 = icmp eq i32 %65, 0
+  %67 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %68 = trunc i64 %p5 to i32
+  %69 = icmp eq i32 %68, 0
   %70 = call ptr @ilgpu.string("Y_index_out_of_bounds")
-  %71 = mul i32 %42, %p16
-  %72 = add i32 %24, %71
-  %73 = getelementptr float, ptr %p12, i32 %72
-  %74 = icmp sge i32 %23, 0
-  %75 = icmp slt i32 %23, 2
+  %71 = shl i32 %33, 1
+  %72 = add i32 %20, %71
+  %73 = getelementptr float, ptr @g0, i32 %72
+  %74 = icmp sge i32 %20, 0
+  %75 = icmp slt i32 %20, 2
   %76 = and i1 %74, %75
   %77 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %78 = icmp sge i32 %41, 0
-  %79 = icmp slt i32 %41, 2
+  %78 = icmp sge i32 %33, 0
+  %79 = icmp slt i32 %33, 2
   %80 = and i1 %78, %79
   %81 = call ptr @ilgpu.string("Y_index_out_of_bounds")
-  %82 = icmp sge i64 %p4, -2147483648
-  %83 = icmp sle i64 %p4, 2147483647
+  %82 = icmp sge i64 %p9, -2147483648
+  %83 = icmp sle i64 %p9, 2147483647
   %84 = and i1 %82, %83
   %85 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %86 = icmp sge i64 %p5, -2147483648
-  %87 = icmp sle i64 %p5, 2147483647
+  %86 = icmp sge i64 %p10, -2147483648
+  %87 = icmp sle i64 %p10, 2147483647
   %88 = and i1 %86, %87
   %89 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %90 = icmp sge i32 %24, 0
-  %91 = trunc i64 %p4 to i32
-  %92 = icmp slt i32 %24, %91
-  %93 = and i1 %90, %92
-  %94 = icmp eq i32 %24, 0
-  %95 = icmp eq i32 %91, 0
-  %96 = and i1 %94, %95
-  %97 = or i1 %93, %96
-  %98 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %99 = trunc i64 %p5 to i32
-  %100 = icmp eq i32 %99, 0
-  %101 = call ptr @ilgpu.string("Y_index_out_of_bounds")
-  %102 = shl i32 %41, 1
-  %103 = add i32 %23, %102
-  %104 = getelementptr float, ptr @g0, i32 %103
-  %105 = icmp sge i32 %23, 0
-  %106 = icmp slt i32 %23, 2
-  %107 = and i1 %105, %106
-  %108 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %109 = icmp sge i32 %41, 0
-  %110 = icmp slt i32 %41, 2
-  %111 = and i1 %109, %110
-  %112 = call ptr @ilgpu.string("Y_index_out_of_bounds")
-  %113 = icmp sge i64 %p9, -2147483648
-  %114 = icmp sle i64 %p9, 2147483647
-  %115 = and i1 %113, %114
-  %116 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %117 = icmp sge i64 %p10, -2147483648
-  %118 = icmp sle i64 %p10, 2147483647
-  %119 = and i1 %117, %118
-  %120 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %121 = trunc i64 %p9 to i32
-  %122 = icmp eq i32 %121, 0
-  %123 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %124 = icmp sge i32 %42, 0
-  %125 = trunc i64 %p10 to i32
-  %126 = icmp slt i32 %42, %125
-  %127 = and i1 %124, %126
-  %128 = icmp eq i32 %42, 0
-  %129 = icmp eq i32 %125, 0
-  %130 = and i1 %128, %129
-  %131 = or i1 %127, %130
-  %132 = call ptr @ilgpu.string("Y_index_out_of_bounds")
-  %133 = mul i32 %42, %p11
-  %134 = shl i32 %41, 1
-  %135 = add i32 %23, %134
-  %136 = getelementptr float, ptr @g1, i32 %135
-  %137 = icmp sge i32 %23, 0
-  %138 = icmp slt i32 %23, 2
-  %139 = and i1 %137, %138
-  %140 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %141 = getelementptr float, ptr @g0, i32 %23
-  %142 = icmp sge i32 %41, 0
-  %143 = icmp slt i32 %41, 2
-  %144 = and i1 %142, %143
-  %145 = call ptr @ilgpu.string("Y_index_out_of_bounds")
-  %146 = shl i32 %41, 1
-  %147 = getelementptr float, ptr @g1, i32 %146
-  %148 = icmp sge i32 %23, 0
-  %149 = icmp slt i32 %23, 2
-  %150 = and i1 %148, %149
-  %151 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %152 = add i32 %23, 2
-  %153 = getelementptr float, ptr @g0, i32 %152
-  %154 = icmp sge i32 %41, 0
-  %155 = icmp slt i32 %41, 2
-  %156 = and i1 %154, %155
-  %157 = call ptr @ilgpu.string("Y_index_out_of_bounds")
-  %158 = shl i32 %41, 1
-  %159 = add i32 %158, 1
-  %160 = getelementptr float, ptr @g1, i32 %159
+  %90 = trunc i64 %p9 to i32
+  %91 = icmp eq i32 %90, 0
+  %92 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %93 = trunc i64 %p10 to i32
+  %94 = icmp eq i32 %93, 0
+  %95 = call ptr @ilgpu.string("Y_index_out_of_bounds")
+  %96 = shl i32 %33, 1
+  %97 = add i32 %20, %96
+  %98 = getelementptr float, ptr @g1, i32 %97
+  %99 = icmp sge i32 %20, 0
+  %100 = icmp slt i32 %20, 2
+  %101 = and i1 %99, %100
+  %102 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %103 = getelementptr float, ptr @g0, i32 %20
+  %104 = icmp sge i32 %33, 0
+  %105 = icmp slt i32 %33, 2
+  %106 = and i1 %104, %105
+  %107 = call ptr @ilgpu.string("Y_index_out_of_bounds")
+  %108 = shl i32 %33, 1
+  %109 = getelementptr float, ptr @g1, i32 %108
+  %110 = icmp sge i32 %20, 0
+  %111 = icmp slt i32 %20, 2
+  %112 = and i1 %110, %111
+  %113 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %114 = add i32 %20, 2
+  %115 = getelementptr float, ptr @g0, i32 %114
+  %116 = icmp sge i32 %33, 0
+  %117 = icmp slt i32 %33, 2
+  %118 = and i1 %116, %117
+  %119 = call ptr @ilgpu.string("Y_index_out_of_bounds")
+  %120 = shl i32 %33, 1
+  %121 = add i32 %120, 1
+  %122 = getelementptr float, ptr @g1, i32 %121
   br label %bb1
 
 bb1:
   br label %bb2
 
 bb2:
-  %161 = phi i32 [ 0, %bb1 ], [ %163, %bb11 ]
-  %162 = phi float [ 0.0, %bb1 ], [ %195, %bb11 ]
-  %163 = add i32 %161, 2
+  %123 = phi i32 [ 0, %bb1 ], [ %125, %bb11 ]
+  %124 = phi float [ 0.0, %bb1 ], [ %195, %bb11 ]
   call void @ilgpu.debug.assert(i1 %2, ptr %3)
   call void @ilgpu.debug.assert(i1 %6, ptr %7)
-  %164 = icmp slt i32 %161, %8
-  %165 = add i32 %41, %161
-  %166 = icmp sge i32 %165, 0
-  %167 = icmp slt i32 %165, %99
-  %168 = and i1 %166, %167
-  %169 = icmp eq i32 %165, 0
-  %170 = and i1 %169, %100
-  %171 = or i1 %168, %170
-  %172 = mul i32 %165, %p6
-  %173 = add i32 %24, %172
-  %174 = getelementptr float, ptr %p2, i32 %173
-  %175 = add i32 %23, %161
-  %176 = icmp sge i32 %175, 0
-  %177 = icmp slt i32 %175, %121
-  %178 = and i1 %176, %177
-  %179 = icmp eq i32 %175, 0
-  %180 = and i1 %179, %122
-  %181 = or i1 %178, %180
-  %182 = add i32 %175, %133
+  %125 = add i32 %123, 2
+  %126 = icmp slt i32 %123, %8
+  %127 = sdiv i64 %17, %18
+  %128 = trunc i64 %127 to i32
+  %129 = shl i32 %128, 1
+  %130 = add i32 %129, %20
+  %131 = icmp sge i32 %130, %21
+  %132 = srem i64 %30, %31
+  %133 = trunc i64 %132 to i32
+  %134 = shl i32 %133, 1
+  %135 = add i32 %134, %33
+  %136 = icmp slt i32 %135, %34
+  %137 = icmp sge i32 %130, 0
+  %138 = icmp slt i32 %130, %43
+  %139 = and i1 %137, %138
+  %140 = icmp eq i32 %130, 0
+  %141 = and i1 %140, %44
+  %142 = or i1 %139, %141
+  %143 = icmp sge i32 %135, 0
+  %144 = icmp slt i32 %135, %46
+  %145 = and i1 %143, %144
+  %146 = icmp eq i32 %135, 0
+  %147 = and i1 %146, %47
+  %148 = or i1 %145, %147
+  %149 = mul i32 %135, %p16
+  %150 = add i32 %130, %149
+  %151 = getelementptr float, ptr %p12, i32 %150
+  %152 = icmp sge i32 %130, 0
+  %153 = icmp slt i32 %130, %65
+  %154 = and i1 %152, %153
+  %155 = icmp eq i32 %130, 0
+  %156 = and i1 %155, %66
+  %157 = or i1 %154, %156
+  %158 = add i32 %33, %123
+  %159 = icmp sge i32 %158, 0
+  %160 = icmp slt i32 %158, %68
+  %161 = and i1 %159, %160
+  %162 = icmp eq i32 %158, 0
+  %163 = and i1 %162, %69
+  %164 = or i1 %161, %163
+  %165 = mul i32 %158, %p6
+  %166 = add i32 %130, %165
+  %167 = getelementptr float, ptr %p2, i32 %166
+  %168 = add i32 %20, %123
+  %169 = icmp sge i32 %168, 0
+  %170 = icmp slt i32 %168, %90
+  %171 = and i1 %169, %170
+  %172 = icmp eq i32 %168, 0
+  %173 = and i1 %172, %91
+  %174 = or i1 %171, %173
+  %175 = icmp sge i32 %135, 0
+  %176 = icmp slt i32 %135, %93
+  %177 = and i1 %175, %176
+  %178 = icmp eq i32 %135, 0
+  %179 = and i1 %178, %94
+  %180 = or i1 %177, %179
+  %181 = mul i32 %135, %p11
+  %182 = add i32 %168, %181
   %183 = getelementptr float, ptr %p7, i32 %182
-  br i1 %164, label %bb10, label %bb3
+  br i1 %126, label %bb10, label %bb3
 
 bb3:
   call void @ilgpu.debug.assert(i1 %11, ptr %12)
   call void @ilgpu.debug.assert(i1 %15, ptr %16)
-  br i1 %26, label %bb6, label %bb4
+  br i1 %131, label %bb6, label %bb4
 
 bb4:
-  call void @ilgpu.debug.assert(i1 %29, ptr %30)
-  call void @ilgpu.debug.assert(i1 %33, ptr %34)
+  call void @ilgpu.debug.assert(i1 %24, ptr %25)
+  call void @ilgpu.debug.assert(i1 %28, ptr %29)
   br label %bb5
 
 bb5:
@@ -219,52 +219,52 @@ bb6:
   br label %bb7
 
 bb7:
-  %184 = phi i1 [ %44, %bb5 ], [ false, %bb6 ]
+  %184 = phi i1 [ %136, %bb5 ], [ false, %bb6 ]
   %185 = xor i1 %184, -1
   br i1 %185, label %bb9, label %bb8
 
 bb8:
-  call void @ilgpu.debug.assert(i1 %47, ptr %48)
-  call void @ilgpu.debug.assert(i1 %51, ptr %52)
-  call void @ilgpu.debug.assert(i1 %60, ptr %61)
-  call void @ilgpu.debug.assert(i1 %69, ptr %70)
-  store float %162, ptr %73
+  call void @ilgpu.debug.assert(i1 %37, ptr %38)
+  call void @ilgpu.debug.assert(i1 %41, ptr %42)
+  call void @ilgpu.debug.assert(i1 %142, ptr %45)
+  call void @ilgpu.debug.assert(i1 %148, ptr %48)
+  store float %124, ptr %151
   br label %bb9
 
 bb9:
   ret void
 
 bb10:
+  call void @ilgpu.debug.assert(i1 %51, ptr %52)
+  call void @ilgpu.debug.assert(i1 %55, ptr %56)
+  call void @ilgpu.debug.assert(i1 %59, ptr %60)
+  call void @ilgpu.debug.assert(i1 %63, ptr %64)
+  call void @ilgpu.debug.assert(i1 %157, ptr %67)
+  call void @ilgpu.debug.assert(i1 %164, ptr %70)
+  %186 = load float, ptr %167
+  store float %186, ptr %73
   call void @ilgpu.debug.assert(i1 %76, ptr %77)
   call void @ilgpu.debug.assert(i1 %80, ptr %81)
   call void @ilgpu.debug.assert(i1 %84, ptr %85)
   call void @ilgpu.debug.assert(i1 %88, ptr %89)
-  call void @ilgpu.debug.assert(i1 %97, ptr %98)
-  call void @ilgpu.debug.assert(i1 %171, ptr %101)
-  %186 = load float, ptr %174
-  store float %186, ptr %104
-  call void @ilgpu.debug.assert(i1 %107, ptr %108)
-  call void @ilgpu.debug.assert(i1 %111, ptr %112)
-  call void @ilgpu.debug.assert(i1 %115, ptr %116)
-  call void @ilgpu.debug.assert(i1 %119, ptr %120)
-  call void @ilgpu.debug.assert(i1 %181, ptr %123)
-  call void @ilgpu.debug.assert(i1 %131, ptr %132)
+  call void @ilgpu.debug.assert(i1 %174, ptr %92)
+  call void @ilgpu.debug.assert(i1 %180, ptr %95)
   %187 = load float, ptr %183
-  store float %187, ptr %136
+  store float %187, ptr %98
   call void @ilgpu.barrier.group()
-  call void @ilgpu.debug.assert(i1 %139, ptr %140)
-  %188 = load float, ptr %141
-  call void @ilgpu.debug.assert(i1 %144, ptr %145)
-  %189 = load float, ptr %147
-  call void @ilgpu.debug.assert(i1 %150, ptr %151)
-  %190 = load float, ptr %153
-  call void @ilgpu.debug.assert(i1 %156, ptr %157)
+  call void @ilgpu.debug.assert(i1 %101, ptr %102)
+  %188 = load float, ptr %103
+  call void @ilgpu.debug.assert(i1 %106, ptr %107)
+  %189 = load float, ptr %109
+  call void @ilgpu.debug.assert(i1 %112, ptr %113)
+  %190 = load float, ptr %115
+  call void @ilgpu.debug.assert(i1 %118, ptr %119)
   %191 = fmul float %188, %189
-  %192 = fadd float %162, %191
+  %192 = fadd float %124, %191
   br label %bb11
 
 bb11:
-  %193 = load float, ptr %160
+  %193 = load float, ptr %122
   call void @ilgpu.barrier.group()
   %194 = fmul float %190, %193
   %195 = fadd float %192, %194

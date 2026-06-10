@@ -42,32 +42,32 @@ bb3:
   call void @ilgpu.barrier.group()
   %18 = icmp sge i32 %13, 64
   %19 = add i32 %13, 1
-  %20 = srem i32 %19, %14
-  %21 = icmp sge i32 %20, 64
-  %22 = addrspacecast ptr %16 to ptr<i32>
-  %23 = addrspacecast ptr %15 to ptr<%struct.0>
-  %24 = addrspacecast ptr %17 to ptr<%view.i32>
-  %25 = addrspacecast ptr %16 to ptr<i32>
-  %26 = addrspacecast ptr %15 to ptr<%struct.0>
-  %27 = addrspacecast ptr %17 to ptr<%view.i32>
+  %20 = addrspacecast ptr %16 to ptr<i32>
+  %21 = addrspacecast ptr %15 to ptr<%struct.0>
+  %22 = addrspacecast ptr %17 to ptr<%view.i32>
+  %23 = addrspacecast ptr %16 to ptr<i32>
+  %24 = addrspacecast ptr %15 to ptr<%struct.0>
+  %25 = addrspacecast ptr %17 to ptr<%view.i32>
   br i1 %18, label %bb8, label %bb4
 
 bb4:
-  br i1 %21, label %bb6, label %bb5
+  %26 = srem i32 %19, %14
+  %27 = icmp sge i32 %26, 64
+  br i1 %27, label %bb6, label %bb5
 
 bb5:
-  %28 = load i32, ptr %22
-  %29 = call ptr<i32> @get_Item(ptr<%struct.0> %23, i32 %28)
-  %30 = load %view.i32, ptr %24
-  %31 = getelementptr i32, ptr %30, i32 %20
+  %28 = load i32, ptr %20
+  %29 = call ptr<i32> @get_Item(ptr<%struct.0> %21, i32 %28)
+  %30 = load %view.i32, ptr %22
+  %31 = getelementptr i32, ptr %30, i32 %26
   %32 = load i32, ptr %31
   store i32 %32, ptr %29
   br label %bb7
 
 bb6:
-  %33 = load i32, ptr %25
-  %34 = call ptr<i32> @get_Item(ptr<%struct.0> %26, i32 %33)
-  %35 = load %view.i32, ptr %27
+  %33 = load i32, ptr %23
+  %34 = call ptr<i32> @get_Item(ptr<%struct.0> %24, i32 %33)
+  %35 = load %view.i32, ptr %25
   %36 = getelementptr i32, ptr %35, i32 %13
   %37 = load i32, ptr %36
   store i32 %37, ptr %34

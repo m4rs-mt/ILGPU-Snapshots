@@ -30,10 +30,10 @@ bb1:
 
 define i32 @System.Numerics.IDivisionOperators_System.Int32_System.Int32_System.Int32_.op_Division(i32 %p0, i32 %p1) {
 entry:
-  %0 = sdiv i32 %p0, %p1
   br label %bb1
 
 bb1:
+  %0 = sdiv i32 %p0, %p1
   ret i32 %0
 
 }

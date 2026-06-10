@@ -11,20 +11,21 @@ entry:
   store %struct.1 %p1, ptr %0
   %1 = icmp sge i32 %p0, %p2
   %2 = addrspacecast ptr %0 to ptr<%struct.1>
+  %3 = addrspacecast ptr %0 to ptr<%struct.1>
   br i1 %1, label %bb2, label %bb1
 
 bb1:
-  %3 = call %view.i32 @get_BaseView(ptr<%struct.1> %2)
-  %4 = call i32 @ComputeLinearIndex(ptr<%struct.1> %2, i32 %p0)
-  %5 = getelementptr i32, ptr %3, i32 %4
-  store i32 %p0, ptr %5
+  %4 = call %view.i32 @get_BaseView(ptr<%struct.1> %2)
+  %5 = call i32 @ComputeLinearIndex(ptr<%struct.1> %2, i32 %p0)
+  %6 = getelementptr i32, ptr %4, i32 %5
+  store i32 %p0, ptr %6
   br label %bb3
 
 bb2:
-  %6 = call %view.i32 @get_BaseView(ptr<%struct.1> %2)
-  %7 = call i32 @ComputeLinearIndex(ptr<%struct.1> %2, i32 %p0)
-  %8 = getelementptr i32, ptr %6, i32 %7
-  store i32 -1, ptr %8
+  %7 = call %view.i32 @get_BaseView(ptr<%struct.1> %3)
+  %8 = call i32 @ComputeLinearIndex(ptr<%struct.1> %3, i32 %p0)
+  %9 = getelementptr i32, ptr %7, i32 %8
+  store i32 -1, ptr %9
   br label %bb3
 
 bb3:
