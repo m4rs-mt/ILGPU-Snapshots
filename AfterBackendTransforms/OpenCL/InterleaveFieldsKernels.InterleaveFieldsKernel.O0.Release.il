@@ -4,7 +4,7 @@
 %struct.0 = type { i32, i32, i32, i32 }
 %struct.1 = type { i32, i32, i32, i32, i32, i32, i32, i32 }
 
-define void @InterleaveFieldsKernel(i32 %p0, ptr<%struct.1> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4) {
+define void @InterleaveFieldsKernel(i32 %p0, ptr<%struct.1> %p1, i64 %p2, i64 %p3, i8 %p4) {
 entry:
   %0 = getelementptr %struct.1, ptr %p1, i32 %p0
   %1 = getelementptr inbounds %struct.1, ptr %0, i32 0, i32 0

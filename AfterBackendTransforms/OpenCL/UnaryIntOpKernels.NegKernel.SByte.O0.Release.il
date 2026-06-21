@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: OpenCL  opt: O0
 ; module: NegKernel  [intptr: i64]
 
-define void @NegKernel(i32 %p0, ptr<i8> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4, ptr<i8> addrspace(global) %p5, i64 %p6, i64 %p7, i8 %p8) {
+define void @NegKernel(i32 %p0, ptr<i8> %p1, i64 %p2, i64 %p3, i8 %p4, ptr<i8> %p5, i64 %p6, i64 %p7, i8 %p8) {
 entry:
   %0 = getelementptr i8, ptr %p1, i32 %p0
   %1 = load i8, ptr %0

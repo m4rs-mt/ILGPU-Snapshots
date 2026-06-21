@@ -22,14 +22,11 @@ entry:
   %14 = icmp sgt i32 %p1, 0
   %15 = select i1 %14, i32 %p0, i32 0
   %16 = add i32 %15, 1
-  %17 = icmp sle i32 %p1, 0
-  %18 = or i1 %17, %14
-  %19 = icmp sgt i32 %p1, 0
-  %20 = and i1 %18, %19
-  %21 = select i1 %20, i32 %p0, i32 1
-  %22 = shl i32 %21, 1
-  %23 = add i32 %16, %22
-  store i32 %23, ptr %13
+  %17 = icmp sgt i32 %p1, 0
+  %18 = select i1 %17, i32 %p0, i32 1
+  %19 = shl i32 %18, 1
+  %20 = add i32 %16, %19
+  store i32 %20, ptr %13
   ret void
 
 }

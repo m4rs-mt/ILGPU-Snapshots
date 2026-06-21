@@ -6,151 +6,149 @@
 
 define void @DeepChainKernel(i32 %p0, %struct.0 %p1, i32 %p2) {
 entry:
-  %0 = and i32 %p2, 1
+  %0 = and i32 %p2, 2
   %1 = icmp eq i32 %0, 0
-  %2 = icmp ne i32 %0, 0
-  %3 = and i32 %p2, 2
-  %4 = icmp eq i32 %3, 0
-  %5 = and i1 %2, %4
-  %6 = or i1 %1, %5
-  %7 = icmp ne i32 %0, 0
-  %8 = icmp ne i32 %3, 0
-  %9 = and i1 %7, %8
-  %10 = and i32 %p2, 4
-  %11 = icmp eq i32 %10, 0
-  %12 = and i1 %9, %11
-  %13 = or i1 %6, %12
-  %14 = icmp ne i32 %0, 0
-  %15 = icmp ne i32 %3, 0
+  %2 = and i32 %p2, 1
+  %3 = icmp eq i32 %2, 0
+  %4 = or i1 %1, %3
+  %5 = icmp ne i32 %2, 0
+  %6 = icmp ne i32 %0, 0
+  %7 = and i1 %5, %6
+  %8 = and i32 %p2, 4
+  %9 = icmp eq i32 %8, 0
+  %10 = and i1 %7, %9
+  %11 = or i1 %4, %10
+  %12 = icmp ne i32 %2, 0
+  %13 = icmp ne i32 %0, 0
+  %14 = and i1 %12, %13
+  %15 = icmp ne i32 %8, 0
   %16 = and i1 %14, %15
-  %17 = icmp ne i32 %10, 0
-  %18 = and i1 %16, %17
-  %19 = and i32 %p2, 8
-  %20 = icmp eq i32 %19, 0
-  %21 = and i1 %18, %20
-  %22 = or i1 %13, %21
-  %23 = icmp ne i32 %0, 0
-  %24 = icmp ne i32 %3, 0
+  %17 = and i32 %p2, 8
+  %18 = icmp eq i32 %17, 0
+  %19 = and i1 %16, %18
+  %20 = or i1 %11, %19
+  %21 = icmp ne i32 %2, 0
+  %22 = icmp ne i32 %0, 0
+  %23 = and i1 %21, %22
+  %24 = icmp ne i32 %8, 0
   %25 = and i1 %23, %24
-  %26 = icmp ne i32 %10, 0
+  %26 = icmp ne i32 %17, 0
   %27 = and i1 %25, %26
-  %28 = icmp ne i32 %19, 0
-  %29 = and i1 %27, %28
-  %30 = and i32 %p2, 16
-  %31 = icmp eq i32 %30, 0
-  %32 = and i1 %29, %31
-  %33 = or i1 %22, %32
-  %34 = icmp ne i32 %0, 0
-  %35 = icmp ne i32 %3, 0
+  %28 = and i32 %p2, 16
+  %29 = icmp eq i32 %28, 0
+  %30 = and i1 %27, %29
+  %31 = or i1 %20, %30
+  %32 = icmp ne i32 %2, 0
+  %33 = icmp ne i32 %0, 0
+  %34 = and i1 %32, %33
+  %35 = icmp ne i32 %8, 0
   %36 = and i1 %34, %35
-  %37 = icmp ne i32 %10, 0
+  %37 = icmp ne i32 %17, 0
   %38 = and i1 %36, %37
-  %39 = icmp ne i32 %19, 0
+  %39 = icmp ne i32 %28, 0
   %40 = and i1 %38, %39
-  %41 = icmp ne i32 %30, 0
-  %42 = and i1 %40, %41
-  %43 = and i32 %p2, 32
-  %44 = icmp eq i32 %43, 0
-  %45 = and i1 %42, %44
-  %46 = or i1 %33, %45
-  %47 = icmp ne i32 %0, 0
-  %48 = icmp ne i32 %3, 0
+  %41 = and i32 %p2, 32
+  %42 = icmp eq i32 %41, 0
+  %43 = and i1 %40, %42
+  %44 = or i1 %31, %43
+  %45 = icmp ne i32 %2, 0
+  %46 = icmp ne i32 %0, 0
+  %47 = and i1 %45, %46
+  %48 = icmp ne i32 %8, 0
   %49 = and i1 %47, %48
-  %50 = icmp ne i32 %10, 0
+  %50 = icmp ne i32 %17, 0
   %51 = and i1 %49, %50
-  %52 = icmp ne i32 %19, 0
+  %52 = icmp ne i32 %28, 0
   %53 = and i1 %51, %52
-  %54 = icmp ne i32 %30, 0
+  %54 = icmp ne i32 %41, 0
   %55 = and i1 %53, %54
-  %56 = icmp ne i32 %43, 0
-  %57 = and i1 %55, %56
-  %58 = and i32 %p2, 64
-  %59 = icmp eq i32 %58, 0
-  %60 = and i1 %57, %59
-  %61 = or i1 %46, %60
-  %62 = icmp ne i32 %0, 0
-  %63 = icmp ne i32 %3, 0
+  %56 = and i32 %p2, 64
+  %57 = icmp eq i32 %56, 0
+  %58 = and i1 %55, %57
+  %59 = or i1 %44, %58
+  %60 = icmp ne i32 %2, 0
+  %61 = icmp ne i32 %0, 0
+  %62 = and i1 %60, %61
+  %63 = icmp ne i32 %8, 0
   %64 = and i1 %62, %63
-  %65 = icmp ne i32 %10, 0
+  %65 = icmp ne i32 %17, 0
   %66 = and i1 %64, %65
-  %67 = icmp ne i32 %19, 0
+  %67 = icmp ne i32 %28, 0
   %68 = and i1 %66, %67
-  %69 = icmp ne i32 %30, 0
+  %69 = icmp ne i32 %41, 0
   %70 = and i1 %68, %69
-  %71 = icmp ne i32 %43, 0
+  %71 = icmp ne i32 %56, 0
   %72 = and i1 %70, %71
-  %73 = icmp ne i32 %58, 0
-  %74 = and i1 %72, %73
-  %75 = and i32 %p2, 128
-  %76 = icmp eq i32 %75, 0
-  %77 = and i1 %74, %76
-  %78 = or i1 %61, %77
-  %79 = icmp ne i32 %0, 0
-  %80 = icmp ne i32 %3, 0
+  %73 = and i32 %p2, 128
+  %74 = icmp eq i32 %73, 0
+  %75 = and i1 %72, %74
+  %76 = or i1 %59, %75
+  %77 = icmp ne i32 %2, 0
+  %78 = icmp ne i32 %0, 0
+  %79 = and i1 %77, %78
+  %80 = icmp ne i32 %8, 0
   %81 = and i1 %79, %80
-  %82 = icmp ne i32 %10, 0
+  %82 = icmp ne i32 %17, 0
   %83 = and i1 %81, %82
-  %84 = icmp ne i32 %19, 0
+  %84 = icmp ne i32 %28, 0
   %85 = and i1 %83, %84
-  %86 = icmp ne i32 %30, 0
+  %86 = icmp ne i32 %41, 0
   %87 = and i1 %85, %86
-  %88 = icmp ne i32 %43, 0
+  %88 = icmp ne i32 %56, 0
   %89 = and i1 %87, %88
-  %90 = icmp ne i32 %58, 0
+  %90 = icmp ne i32 %73, 0
   %91 = and i1 %89, %90
-  %92 = icmp ne i32 %75, 0
-  %93 = and i1 %91, %92
-  %94 = and i32 %p2, 256
-  %95 = icmp eq i32 %94, 0
-  %96 = and i1 %93, %95
-  %97 = or i1 %78, %96
-  %98 = and i32 %p2, 512
-  %99 = icmp ule i32 %98, 0
-  %100 = or i1 %97, %99
-  %101 = extractvalue %struct.0 %p1, 1
-  %102 = icmp sge i64 %101, -2147483648
-  %103 = icmp sle i64 %101, 2147483647
-  %104 = and i1 %102, %103
-  %105 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %106 = icmp sge i32 %p0, 0
-  %107 = trunc i64 %101 to i32
-  %108 = icmp slt i32 %p0, %107
-  %109 = and i1 %106, %108
-  %110 = icmp eq i32 %p0, 0
-  %111 = icmp eq i32 %107, 0
-  %112 = and i1 %110, %111
-  %113 = or i1 %109, %112
-  %114 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %115 = extractvalue %struct.0 %p1, 0
-  %116 = getelementptr i32, ptr %115, i32 %p0
-  %117 = extractvalue %struct.0 %p1, 1
-  %118 = icmp sge i64 %117, -2147483648
-  %119 = icmp sle i64 %117, 2147483647
-  %120 = and i1 %118, %119
-  %121 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %122 = icmp sge i32 %p0, 0
-  %123 = trunc i64 %117 to i32
-  %124 = icmp slt i32 %p0, %123
-  %125 = and i1 %122, %124
-  %126 = icmp eq i32 %p0, 0
-  %127 = icmp eq i32 %123, 0
-  %128 = and i1 %126, %127
-  %129 = or i1 %125, %128
-  %130 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %131 = extractvalue %struct.0 %p1, 0
-  %132 = getelementptr i32, ptr %131, i32 %p0
-  br i1 %100, label %bb2, label %bb1
+  %92 = and i32 %p2, 256
+  %93 = icmp eq i32 %92, 0
+  %94 = and i1 %91, %93
+  %95 = or i1 %76, %94
+  %96 = and i32 %p2, 512
+  %97 = icmp ule i32 %96, 0
+  %98 = or i1 %95, %97
+  %99 = extractvalue %struct.0 %p1, 1
+  %100 = icmp sge i64 %99, -2147483648
+  %101 = icmp sle i64 %99, 2147483647
+  %102 = and i1 %100, %101
+  %103 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %104 = icmp sge i32 %p0, 0
+  %105 = trunc i64 %99 to i32
+  %106 = icmp slt i32 %p0, %105
+  %107 = and i1 %104, %106
+  %108 = icmp eq i32 %p0, 0
+  %109 = icmp eq i32 %105, 0
+  %110 = and i1 %108, %109
+  %111 = or i1 %107, %110
+  %112 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %113 = extractvalue %struct.0 %p1, 0
+  %114 = getelementptr i32, ptr %113, i32 %p0
+  %115 = extractvalue %struct.0 %p1, 1
+  %116 = icmp sge i64 %115, -2147483648
+  %117 = icmp sle i64 %115, 2147483647
+  %118 = and i1 %116, %117
+  %119 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %120 = icmp sge i32 %p0, 0
+  %121 = trunc i64 %115 to i32
+  %122 = icmp slt i32 %p0, %121
+  %123 = and i1 %120, %122
+  %124 = icmp eq i32 %p0, 0
+  %125 = icmp eq i32 %121, 0
+  %126 = and i1 %124, %125
+  %127 = or i1 %123, %126
+  %128 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %129 = extractvalue %struct.0 %p1, 0
+  %130 = getelementptr i32, ptr %129, i32 %p0
+  br i1 %98, label %bb2, label %bb1
 
 bb1:
-  call void @ilgpu.debug.assert(i1 %104, ptr %105)
-  call void @ilgpu.debug.assert(i1 %113, ptr %114)
-  store i32 1, ptr %116
+  call void @ilgpu.debug.assert(i1 %102, ptr %103)
+  call void @ilgpu.debug.assert(i1 %111, ptr %112)
+  store i32 1, ptr %114
   br label %bb3
 
 bb2:
-  call void @ilgpu.debug.assert(i1 %120, ptr %121)
-  call void @ilgpu.debug.assert(i1 %129, ptr %130)
-  store i32 0, ptr %132
+  call void @ilgpu.debug.assert(i1 %118, ptr %119)
+  call void @ilgpu.debug.assert(i1 %127, ptr %128)
+  store i32 0, ptr %130
   br label %bb3
 
 bb3:

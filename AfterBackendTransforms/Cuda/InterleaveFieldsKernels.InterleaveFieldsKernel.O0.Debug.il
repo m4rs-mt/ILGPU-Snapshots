@@ -3,8 +3,8 @@
 
 %struct.0 = type { i32, i32, i32, i32 }
 %struct.1 = type { i32, i32, i32, i32, i32, i32, i32, i32 }
-%struct.2 = type { ptr<%struct.1> addrspace(global), i64 }
-%struct.3 = type { ptr<%struct.1> addrspace(global), i64, i64, i8 }
+%struct.2 = type { ptr<%struct.1>, i64 }
+%struct.3 = type { ptr<%struct.1>, i64, i64, i8 }
 
 define void @InterleaveFieldsKernel(i32 %p0, %struct.3 %p1) {
 entry:

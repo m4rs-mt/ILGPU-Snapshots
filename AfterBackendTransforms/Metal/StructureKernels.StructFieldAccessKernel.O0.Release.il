@@ -3,7 +3,7 @@
 
 %struct.0 = type { i32, i64, i16, i32 }
 
-define void @StructFieldAccessKernel(i32 %p0, %struct.0 %p1, ptr<i32> addrspace(global) %p2, i64 %p3, i64 %p4, i8 %p5) {
+define void @StructFieldAccessKernel(i32 %p0, %struct.0 %p1, ptr<i32> %p2, i64 %p3, i64 %p4, i8 %p5) {
 entry:
   %0 = getelementptr i32, ptr %p2, i32 %p0
   %1 = extractvalue %struct.0 %p1, 0

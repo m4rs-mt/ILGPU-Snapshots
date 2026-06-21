@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: OpenCL  opt: O0
 ; module: AndChainKernel  [intptr: i64]
 
-define void @AndChainKernel(i32 %p0, i32 %p1, i32 %p2, i32 %p3, ptr<i32> addrspace(global) %p4, i64 %p5, i64 %p6, i8 %p7) {
+define void @AndChainKernel(i32 %p0, i32 %p1, i32 %p2, i32 %p3, ptr<i32> %p4, i64 %p5, i64 %p6, i8 %p7) {
 entry:
   %0 = icmp sle i32 %p1, 0
   %1 = icmp sle i32 %p2, 0

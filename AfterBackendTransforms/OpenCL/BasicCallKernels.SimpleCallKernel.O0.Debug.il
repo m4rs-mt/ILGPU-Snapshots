@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: OpenCL  opt: O0
 ; module: SimpleCallKernel  [intptr: i64]
 
-define void @SimpleCallKernel(i32 %p0, i32 %p1, i32 %p2, ptr<i32> addrspace(global) %p3, i64 %p4, i64 %p5, i8 %p6) {
+define void @SimpleCallKernel(i32 %p0, i32 %p1, i32 %p2, ptr<i32> %p3, i64 %p4, i64 %p5, i8 %p6) {
 entry:
   %0 = icmp sge i64 %p5, -2147483648
   %1 = icmp sle i64 %p5, 2147483647

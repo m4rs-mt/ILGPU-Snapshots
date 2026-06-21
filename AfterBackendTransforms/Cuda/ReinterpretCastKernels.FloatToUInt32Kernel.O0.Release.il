@@ -1,10 +1,10 @@
 ; stage: AfterBackendTransforms  backend: Cuda  opt: O0
 ; module: FloatToUInt32Kernel  [intptr: i64]
 
-%struct.0 = type { ptr<float> addrspace(global), i64 }
-%struct.1 = type { ptr<float> addrspace(global), i64, i64, i8 }
-%struct.2 = type { ptr<i32> addrspace(global), i64 }
-%struct.3 = type { ptr<i32> addrspace(global), i64, i64, i8 }
+%struct.0 = type { ptr<float>, i64 }
+%struct.1 = type { ptr<float>, i64, i64, i8 }
+%struct.2 = type { ptr<i32>, i64 }
+%struct.3 = type { ptr<i32>, i64, i64, i8 }
 
 define void @FloatToUInt32Kernel(i32 %p0, %struct.1 %p1, %struct.3 %p2) {
 entry:

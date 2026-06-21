@@ -5,7 +5,7 @@
 
 @g0 = internal global i32 zeroinitializer ; shared
 
-define void @GroupInclusiveScanAddKernel(i32 %p0, ptr<i32> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4) {
+define void @GroupInclusiveScanAddKernel(i32 %p0, ptr<i32> %p1, i64 %p2, i64 %p3, i8 %p4) {
 entry:
   %0 = call %view.i32 @ilgpu.view.new(ptr @g0, i64 32)
   %1 = call i32 @ilgpu.subgroup.lane()

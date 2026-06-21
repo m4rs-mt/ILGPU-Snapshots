@@ -1,8 +1,8 @@
 ; stage: AfterBackendTransforms  backend: ROCm  opt: O0
 ; module: ViewOfStructCounterKernel  [intptr: i64]
 
-%struct.0 = type { ptr<i32> addrspace(global), i64 }
-%struct.1 = type { ptr<i32> addrspace(global), i64, i64, i8 }
+%struct.0 = type { ptr<i32>, i64 }
+%struct.1 = type { ptr<i32>, i64, i64, i8 }
 %struct.2 = type { i16, i8, i32 }
 %struct.3 = type { ptr<%struct.2> addrspace(global), i64 }
 

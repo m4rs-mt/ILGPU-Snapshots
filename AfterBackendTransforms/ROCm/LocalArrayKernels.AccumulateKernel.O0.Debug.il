@@ -1,8 +1,8 @@
 ; stage: AfterBackendTransforms  backend: ROCm  opt: O0
 ; module: AccumulateKernel  [intptr: i64]
 
-%struct.0 = type { ptr<i32> addrspace(global), i64 }
-%struct.1 = type { ptr<i32> addrspace(global), i64, i64, i8 }
+%struct.0 = type { ptr<i32>, i64 }
+%struct.1 = type { ptr<i32>, i64, i64, i8 }
 
 @g0 = internal global i32 zeroinitializer ; local
 
