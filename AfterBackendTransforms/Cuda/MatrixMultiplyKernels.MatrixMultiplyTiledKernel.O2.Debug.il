@@ -37,7 +37,7 @@ entry:
   %24 = extractvalue %struct.0 %p0, 0
   %25 = sext i32 %p4 to i64
   %26 = extractvalue %struct.0 %p0, 1
-  %27 = ashr i32 %26, 1
+  %27 = sdiv i32 %26, 2
   %28 = extractvalue %struct.2 %13, 0
   %29 = trunc i64 %28 to i32
   %30 = extractvalue %struct.1 %p3, 2 [Span: 2]
