@@ -180,21 +180,10 @@ entry:
   %6 = or i1 %2, %5
   %7 = call ptr @ilgpu.string("X_index_out_of_bounds")
   call void @ilgpu.debug.assert(i1 %6, ptr %7)
-  %8 = alloca i8, i32 1
-  store i8 %p0, ptr %8
-  %9 = alloca i32, i32 1
-  store i32 %p1, ptr %9
-  %10 = call i32 @get_X(ptr<i32> addrspace(local) %9)
-  %11 = addrspacecast ptr %8 to ptr<i8>
-  %12 = call i32 @get_XStride(ptr<i8> %11)
-  %13 = mul i32 %10, %12
-  ret i32 %13
-
-}
-
-define i32 @get_XStride(ptr<i8> %p0) {
-entry:
-  ret i32 1
+  %8 = alloca i32, i32 1
+  store i32 %p1, ptr %8
+  %9 = call i32 @get_X(ptr<i32> addrspace(local) %8)
+  ret i32 %9
 
 }
 
