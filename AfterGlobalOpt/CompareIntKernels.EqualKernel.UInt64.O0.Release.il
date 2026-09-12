@@ -18,13 +18,13 @@ entry:
   %4 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %2, i32 %p0)
   %5 = call %view.i64 @get_BaseView(ptr<%struct.1> addrspace(local) %0)
   %6 = call i32 @ComputeLinearIndex(ptr<%struct.1> addrspace(local) %0, i32 %p0)
-  %7 = call %view.i64 @get_BaseView(ptr<%struct.1> addrspace(local) %1)
-  %8 = call i32 @ComputeLinearIndex(ptr<%struct.1> addrspace(local) %1, i32 %p0)
-  %9 = getelementptr i64, ptr %7, i32 %8
-  %10 = load i64, ptr %9
-  %11 = getelementptr i64, ptr %5, i32 %6
+  %7 = getelementptr i64, ptr %5, i32 %6
+  %8 = load i64, ptr %7
+  %9 = call %view.i64 @get_BaseView(ptr<%struct.1> addrspace(local) %1)
+  %10 = call i32 @ComputeLinearIndex(ptr<%struct.1> addrspace(local) %1, i32 %p0)
+  %11 = getelementptr i64, ptr %9, i32 %10
   %12 = load i64, ptr %11
-  %13 = icmp eq i64 %12, %10
+  %13 = icmp eq i64 %8, %12
   %14 = getelementptr i32, ptr %3, i32 %4
   br i1 %13, label %bb2, label %bb1
 

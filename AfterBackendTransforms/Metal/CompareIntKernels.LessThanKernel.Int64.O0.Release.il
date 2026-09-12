@@ -3,11 +3,11 @@
 
 define void @LessThanKernel(i32 %p0, ptr<i64> %p1, i64 %p2, i64 %p3, i8 %p4, ptr<i64> %p5, i64 %p6, i64 %p7, i8 %p8, ptr<i32> %p9, i64 %p10, i64 %p11, i8 %p12) {
 entry:
-  %0 = getelementptr i64, ptr %p5, i32 %p0
+  %0 = getelementptr i64, ptr %p1, i32 %p0
   %1 = load i64, ptr %0
-  %2 = getelementptr i64, ptr %p1, i32 %p0
+  %2 = getelementptr i64, ptr %p5, i32 %p0
   %3 = load i64, ptr %2
-  %4 = icmp slt i64 %3, %1
+  %4 = icmp slt i64 %1, %3
   %5 = getelementptr i32, ptr %p9, i32 %p0
   br i1 %4, label %bb2, label %bb1
 
