@@ -14,27 +14,24 @@ entry:
   %5 = getelementptr i32, ptr %4, i32 %p0
   %6 = extractvalue %struct.0 %p1, 0
   %7 = getelementptr i32, ptr %6, i32 %p0
-  br i1 %0, label %bb5, label %bb1
+  br i1 %0, label %bb4, label %bb1
 
 bb1:
   br i1 %1, label %bb3, label %bb2
 
 bb2:
   store i32 3, ptr %3
-  br label %bb4
+  br label %bb5
 
 bb3:
   store i32 2, ptr %5
-  br label %bb4
+  br label %bb5
 
 bb4:
-  br label %bb6
+  store i32 1, ptr %7
+  br label %bb5
 
 bb5:
-  store i32 1, ptr %7
-  br label %bb6
-
-bb6:
   ret void
 
 }

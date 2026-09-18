@@ -56,7 +56,7 @@ bb1:
 
 bb2:
   call void @ilgpu.barrier.group()
-  br i1 %4, label %bb7, label %bb3
+  br i1 %4, label %bb6, label %bb3
 
 bb3:
   %40 = srem i32 %5, %6
@@ -79,9 +79,6 @@ bb5:
   br label %bb6
 
 bb6:
-  br label %bb7
-
-bb7:
   ret void
 
 }

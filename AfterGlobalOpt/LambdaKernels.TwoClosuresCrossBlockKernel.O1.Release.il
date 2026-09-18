@@ -26,32 +26,26 @@ entry:
 
 bb1:
   %11 = load i32, ptr %4
-  br label %bb4
+  br label %bb3
 
 bb2:
   br label %bb3
 
 bb3:
-  br label %bb4
-
-bb4:
-  %12 = phi i32 [ %11, %bb1 ], [ %p0, %bb3 ]
+  %12 = phi i32 [ %11, %bb1 ], [ %p0, %bb2 ]
   %13 = load i32, ptr %5
   %14 = add i32 %12, %13
-  br i1 %6, label %bb6, label %bb5
+  br i1 %6, label %bb5, label %bb4
+
+bb4:
+  %15 = load i32, ptr %7
+  br label %bb6
 
 bb5:
-  %15 = load i32, ptr %7
-  br label %bb8
+  br label %bb6
 
 bb6:
-  br label %bb7
-
-bb7:
-  br label %bb8
-
-bb8:
-  %16 = phi i32 [ %15, %bb5 ], [ %p0, %bb7 ]
+  %16 = phi i32 [ %15, %bb4 ], [ %p0, %bb5 ]
   %17 = load i32, ptr %8
   %18 = mul i32 %16, %17
   %19 = add i32 %14, %18

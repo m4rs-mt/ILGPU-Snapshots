@@ -30,30 +30,24 @@ entry:
   br i1 %14, label %bb2, label %bb1
 
 bb1:
-  br label %bb4
+  br label %bb3
 
 bb2:
   br label %bb3
 
 bb3:
-  br label %bb4
+  %19 = phi i32 [ %p2, %bb1 ], [ %p0, %bb2 ]
+  %20 = add i32 %19, %p2
+  br i1 %15, label %bb5, label %bb4
 
 bb4:
-  %19 = phi i32 [ %p2, %bb1 ], [ %p0, %bb3 ]
-  %20 = add i32 %19, %p2
-  br i1 %15, label %bb6, label %bb5
+  br label %bb6
 
 bb5:
-  br label %bb8
+  br label %bb6
 
 bb6:
-  br label %bb7
-
-bb7:
-  br label %bb8
-
-bb8:
-  %21 = phi i32 [ %p3, %bb5 ], [ %p0, %bb7 ]
+  %21 = phi i32 [ %p3, %bb4 ], [ %p0, %bb5 ]
   %22 = mul i32 %21, %p3
   %23 = add i32 %20, %22
   store i32 %23, ptr %18

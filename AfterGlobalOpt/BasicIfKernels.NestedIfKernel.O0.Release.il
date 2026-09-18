@@ -10,7 +10,7 @@ entry:
   store %struct.0 %p1, ptr %0
   %1 = icmp sle i32 %p2, 10
   %2 = icmp sle i32 %p2, 20
-  br i1 %1, label %bb5, label %bb1
+  br i1 %1, label %bb4, label %bb1
 
 bb1:
   br i1 %2, label %bb3, label %bb2
@@ -20,26 +20,23 @@ bb2:
   %4 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
   %5 = getelementptr i32, ptr %3, i32 %4
   store i32 3, ptr %5
-  br label %bb4
+  br label %bb5
 
 bb3:
   %6 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %0)
   %7 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
   %8 = getelementptr i32, ptr %6, i32 %7
   store i32 2, ptr %8
-  br label %bb4
+  br label %bb5
 
 bb4:
-  br label %bb6
-
-bb5:
   %9 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %0)
   %10 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
   %11 = getelementptr i32, ptr %9, i32 %10
   store i32 1, ptr %11
-  br label %bb6
+  br label %bb5
 
-bb6:
+bb5:
   ret void
 
 }

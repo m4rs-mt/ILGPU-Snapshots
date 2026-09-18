@@ -11,28 +11,22 @@ entry:
   %1 = icmp ne i32 %p2, 0
   %2 = icmp ne i32 %p2, 1
   %3 = mul i32 %p2, 3
-  br i1 %1, label %bb3, label %bb1
+  br i1 %1, label %bb2, label %bb1
 
 bb1:
-  br label %bb2
+  br label %bb5
 
 bb2:
-  br label %bb7
+  br i1 %2, label %bb4, label %bb3
 
 bb3:
-  br i1 %2, label %bb6, label %bb4
+  br label %bb5
 
 bb4:
   br label %bb5
 
 bb5:
-  br label %bb7
-
-bb6:
-  br label %bb7
-
-bb7:
-  %4 = phi i32 [ 100, %bb2 ], [ 200, %bb5 ], [ %3, %bb6 ]
+  %4 = phi i32 [ 100, %bb1 ], [ 200, %bb3 ], [ %3, %bb4 ]
   %5 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %0)
   %6 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
   %7 = getelementptr i32, ptr %5, i32 %6

@@ -56,8 +56,8 @@ bb1:
   br label %bb2
 
 bb2:
-  %39 = phi i32 [ 0, %bb1 ], [ %41, %bb11 ]
-  %40 = phi float [ 0.0, %bb1 ], [ %75, %bb11 ]
+  %39 = phi i32 [ 0, %bb1 ], [ %41, %bb10 ]
+  %40 = phi float [ 0.0, %bb1 ], [ %75, %bb10 ]
   %41 = add i32 %39, 2
   %42 = icmp slt i32 %39, %2
   %43 = sdiv i64 %3, %4
@@ -81,33 +81,30 @@ bb2:
   %61 = mul i32 %51, %26
   %62 = add i32 %60, %61
   %63 = getelementptr float, ptr %25, i32 %62
-  br i1 %42, label %bb10, label %bb3
+  br i1 %42, label %bb9, label %bb3
 
 bb3:
-  br i1 %47, label %bb6, label %bb4
+  br i1 %47, label %bb5, label %bb4
 
 bb4:
-  br label %bb5
+  br label %bb6
 
 bb5:
-  br label %bb7
+  br label %bb6
 
 bb6:
-  br label %bb7
+  %64 = phi i1 [ %52, %bb4 ], [ false, %bb5 ]
+  %65 = xor i1 %64, -1
+  br i1 %65, label %bb8, label %bb7
 
 bb7:
-  %64 = phi i1 [ %52, %bb5 ], [ false, %bb6 ]
-  %65 = xor i1 %64, -1
-  br i1 %65, label %bb9, label %bb8
+  store float %40, ptr %55
+  br label %bb8
 
 bb8:
-  store float %40, ptr %55
-  br label %bb9
-
-bb9:
   ret void
 
-bb10:
+bb9:
   %66 = load float, ptr %59
   store float %66, ptr %24
   %67 = load float, ptr %63
@@ -118,9 +115,9 @@ bb10:
   %70 = load float, ptr %35
   %71 = fmul float %68, %69
   %72 = fadd float %40, %71
-  br label %bb11
+  br label %bb10
 
-bb11:
+bb10:
   %73 = load float, ptr %38
   call void @ilgpu.barrier.group()
   %74 = fmul float %70, %73

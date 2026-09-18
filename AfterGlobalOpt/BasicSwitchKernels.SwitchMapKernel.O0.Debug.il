@@ -16,25 +16,22 @@ entry:
   ]
 
 bb1:
-  br label %bb7
+  br label %bb6
 
 bb2:
-  br label %bb7
+  br label %bb6
 
 bb3:
-  br label %bb7
+  br label %bb6
 
 bb4:
-  br label %bb7
+  br label %bb6
 
 bb5:
   br label %bb6
 
 bb6:
-  br label %bb7
-
-bb7:
-  %1 = phi i32 [ 40, %bb1 ], [ 30, %bb2 ], [ 20, %bb3 ], [ 10, %bb4 ], [ -1, %bb6 ]
+  %1 = phi i32 [ 40, %bb1 ], [ 30, %bb2 ], [ 20, %bb3 ], [ 10, %bb4 ], [ -1, %bb5 ]
   %2 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %0)
   %3 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
   %4 = getelementptr i32, ptr %2, i32 %3

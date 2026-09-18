@@ -56,7 +56,7 @@ entry:
   %47 = call ptr @ilgpu.string("X_index_out_of_bounds")
   %48 = extractvalue %struct.0 %p1, 0
   %49 = getelementptr i32, ptr %48, i32 %p0
-  br i1 %0, label %bb5, label %bb1
+  br i1 %0, label %bb4, label %bb1
 
 bb1:
   br i1 %1, label %bb3, label %bb2
@@ -65,24 +65,21 @@ bb2:
   call void @ilgpu.debug.assert(i1 %5, ptr %6)
   call void @ilgpu.debug.assert(i1 %14, ptr %15)
   store i32 3, ptr %17
-  br label %bb4
+  br label %bb5
 
 bb3:
   call void @ilgpu.debug.assert(i1 %21, ptr %22)
   call void @ilgpu.debug.assert(i1 %30, ptr %31)
   store i32 2, ptr %33
-  br label %bb4
+  br label %bb5
 
 bb4:
-  br label %bb6
-
-bb5:
   call void @ilgpu.debug.assert(i1 %37, ptr %38)
   call void @ilgpu.debug.assert(i1 %46, ptr %47)
   store i32 1, ptr %49
-  br label %bb6
+  br label %bb5
 
-bb6:
+bb5:
   ret void
 
 }

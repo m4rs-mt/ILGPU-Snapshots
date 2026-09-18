@@ -15,25 +15,22 @@ entry:
   ]
 
 bb1:
-  br label %bb7
+  br label %bb6
 
 bb2:
-  br label %bb7
+  br label %bb6
 
 bb3:
-  br label %bb7
+  br label %bb6
 
 bb4:
-  br label %bb7
+  br label %bb6
 
 bb5:
   br label %bb6
 
 bb6:
-  br label %bb7
-
-bb7:
-  %2 = phi i32 [ 40, %bb1 ], [ 30, %bb2 ], [ 20, %bb3 ], [ 10, %bb4 ], [ -1, %bb6 ]
+  %2 = phi i32 [ 40, %bb1 ], [ 30, %bb2 ], [ 20, %bb3 ], [ 10, %bb4 ], [ -1, %bb5 ]
   store i32 %2, ptr %1
   ret void
 

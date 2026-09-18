@@ -39,44 +39,41 @@ bb2:
   %17 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %1, i32 %15)
   %18 = load i32, ptr %0
   %19 = getelementptr i32, ptr %16, i32 %17
-  br label %bb3
-
-bb3:
   store i32 %18, ptr %19
   call void @ilgpu.barrier.group()
-  br i1 %9, label %bb9, label %bb4
+  br i1 %9, label %bb8, label %bb3
+
+bb3:
+  br i1 %11, label %bb6, label %bb4
 
 bb4:
-  br i1 %11, label %bb7, label %bb5
-
-bb5:
   %20 = load i32, ptr %0
   %21 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %1)
   %22 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %1, i32 %20)
   %23 = getelementptr i32, ptr %21, i32 %22
-  br label %bb6
+  br label %bb5
+
+bb5:
+  br label %bb7
 
 bb6:
-  br label %bb8
-
-bb7:
   %24 = load %view.i32, ptr %2
   %25 = getelementptr i32, ptr %24, i32 %5
   %26 = addrspacecast ptr %25 to ptr<i32>
-  br label %bb8
+  br label %bb7
 
-bb8:
-  %27 = phi ptr<i32> [ %23, %bb6 ], [ %26, %bb7 ]
+bb7:
+  %27 = phi ptr<i32> [ %23, %bb5 ], [ %26, %bb6 ]
   %28 = load i32, ptr %27
   %29 = add i32 %28, 1
   store i32 %29, ptr %27
-  br label %bb9
+  br label %bb8
+
+bb8:
+  call void @ilgpu.barrier.group()
+  br i1 %12, label %bb10, label %bb9
 
 bb9:
-  call void @ilgpu.barrier.group()
-  br i1 %12, label %bb11, label %bb10
-
-bb10:
   %30 = load i32, ptr %0
   %31 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %1)
   %32 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %1, i32 %30)
@@ -87,9 +84,9 @@ bb10:
   %37 = load i32, ptr %36
   %38 = add i32 %34, %37
   store i32 %38, ptr %33
-  br label %bb11
+  br label %bb10
 
-bb11:
+bb10:
   ret void
 
 }
