@@ -4,6 +4,7 @@
 %struct.0 = type { %view.i32, i64, i8 }
 
 @g0 = internal global i32 zeroinitializer ; local
+@g1 = internal global i32 zeroinitializer ; local
 
 define void @FixedNullKernel(i32 %p0, %struct.0 %p1) {
 entry:
@@ -17,7 +18,7 @@ entry:
   %4 = call array<i32, 1> @ilgpu.array.new(ptr @g0, i32 2)
   %5 = addrspacecast ptr %2 to ptr<array<i32, 1>>
   %6 = addrspacecast ptr %1 to ptr<%struct.0>
-  %7 = call array<i32, 1> @ilgpu.array.new(ptr undef, i32 0)
+  %7 = call array<i32, 1> @ilgpu.array.new(ptr @g1, i32 0)
   br label %bb1
 
 bb1:

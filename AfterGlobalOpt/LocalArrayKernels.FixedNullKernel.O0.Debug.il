@@ -5,6 +5,7 @@
 %struct.0 = type { %view.i32, i64, i8 }
 
 @g0 = internal global i32 zeroinitializer ; local
+@g1 = internal global i32 zeroinitializer ; local
 
 define void @FixedNullKernel(i32 %p0, %struct.0 %p1) {
 entry:
@@ -19,7 +20,7 @@ entry:
   %6 = call i32 @ilgpu.array.length(array<i32, 1> %1)
   %7 = icmp ne i32 %6, 0
   %8 = getelementptr i32, ptr %1, i32 0
-  %9 = call array<i32, 1> @ilgpu.array.new(ptr undef, i32 0)
+  %9 = call array<i32, 1> @ilgpu.array.new(ptr @g1, i32 0)
   %10 = call i32 @ilgpu.array.length(array<i32, 1> %9)
   %11 = icmp ne i32 %10, 0
   %12 = getelementptr i32, ptr %9, i32 0
