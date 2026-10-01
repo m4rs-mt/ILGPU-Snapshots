@@ -20,6 +20,7 @@ entry:
   call void @ilgpu.barrier.group()
   %7 = getelementptr i32, ptr %0, i32 %1
   %8 = load i32, ptr %7
+  call void @ilgpu.barrier.group()
   %9 = call i32 @ilgpu.warp.scan.Exclusive.Add(i32 %8)
   %10 = call i32 @ilgpu.shuffle.idx(i32 %9, i32 %5)
   %11 = icmp sge i64 %p3, -2147483648

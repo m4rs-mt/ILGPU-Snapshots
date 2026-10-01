@@ -20,6 +20,7 @@ entry:
   call void @ilgpu.barrier.group()
   %6 = getelementptr i32, ptr %0, i32 %1
   %7 = load i32, ptr %6
+  call void @ilgpu.barrier.group()
   %8 = call i32 @ilgpu.warp.reduce.AllReduce.Add(i32 %7)
   %9 = extractvalue %struct.0 %p1, 1
   %10 = icmp sge i64 %9, -2147483648
