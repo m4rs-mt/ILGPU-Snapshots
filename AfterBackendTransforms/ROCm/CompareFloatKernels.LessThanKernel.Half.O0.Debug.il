@@ -1,8 +1,8 @@
 ; stage: AfterBackendTransforms  backend: ROCm  opt: O0
 ; module: LessThanKernel  [intptr: i64]
 
-%struct.0 = type { ptr<i16>, i64 }
-%struct.1 = type { ptr<i16>, i64, i64, i8 }
+%struct.0 = type { ptr<half>, i64 }
+%struct.1 = type { ptr<half>, i64, i64, i8 }
 %struct.2 = type { ptr<i32>, i64 }
 %struct.3 = type { ptr<i32>, i64, i64, i8 }
 
@@ -42,8 +42,8 @@ entry:
   call void @ilgpu.debug.assert(i1 %26, ptr %27)
   %28 = extractvalue %struct.1 %p1, 0 [Span: 2]
   %29 = extractvalue %struct.0 %28, 0
-  %30 = getelementptr i16, ptr %29, i32 %p0
-  %31 = load i16, ptr %30
+  %30 = getelementptr half, ptr %29, i32 %p0
+  %31 = load half, ptr %30
   %32 = extractvalue %struct.1 %p2, 2
   %33 = icmp sge i64 %32, -2147483648
   %34 = icmp sle i64 %32, 2147483647
@@ -62,9 +62,9 @@ entry:
   call void @ilgpu.debug.assert(i1 %44, ptr %45)
   %46 = extractvalue %struct.1 %p2, 0 [Span: 2]
   %47 = extractvalue %struct.0 %46, 0
-  %48 = getelementptr i16, ptr %47, i32 %p0
-  %49 = load i16, ptr %48
-  %50 = icmp slt i16 %31, %49
+  %48 = getelementptr half, ptr %47, i32 %p0
+  %49 = load half, ptr %48
+  %50 = fcmp olt half %31, %49
   %51 = extractvalue %struct.3 %p3, 0 [Span: 2]
   %52 = extractvalue %struct.2 %51, 0
   %53 = getelementptr i32, ptr %52, i32 %p0

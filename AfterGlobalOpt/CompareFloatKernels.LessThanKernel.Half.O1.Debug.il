@@ -1,8 +1,8 @@
 ; stage: AfterGlobalOpt  opt: O1
 ; module: LessThanKernel  [intptr: i64]
 
-%view.i16 = view i16
-%struct.0 = type { %view.i16, i64, i8 }
+%view.half = view half
+%struct.0 = type { %view.half, i64, i8 }
 %view.i32 = view i32
 %struct.1 = type { %view.i32, i64, i8 }
 
@@ -41,8 +41,8 @@ entry:
   %27 = call ptr @ilgpu.string("X_index_out_of_bounds")
   call void @ilgpu.debug.assert(i1 %26, ptr %27)
   %28 = extractvalue %struct.0 %p1, 0
-  %29 = getelementptr i16, ptr %28, i32 %p0
-  %30 = load i16, ptr %29
+  %29 = getelementptr half, ptr %28, i32 %p0
+  %30 = load half, ptr %29
   %31 = extractvalue %struct.0 %p2, 1
   %32 = icmp sge i64 %31, -2147483648
   %33 = icmp sle i64 %31, 2147483647
@@ -60,11 +60,11 @@ entry:
   %44 = call ptr @ilgpu.string("X_index_out_of_bounds")
   call void @ilgpu.debug.assert(i1 %43, ptr %44)
   %45 = extractvalue %struct.0 %p2, 0
-  %46 = getelementptr i16, ptr %45, i32 %p0
-  %47 = load i16, ptr %46
+  %46 = getelementptr half, ptr %45, i32 %p0
+  %47 = load half, ptr %46
   %48 = extractvalue %struct.1 %p3, 0
   %49 = getelementptr i32, ptr %48, i32 %p0
-  %50 = icmp slt i16 %30, %47
+  %50 = fcmp olt half %30, %47
   %51 = select i1 %50, i32 1, i32 0
   store i32 %51, ptr %49
   ret void

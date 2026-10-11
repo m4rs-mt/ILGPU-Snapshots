@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: Metal  opt: O2
 ; module: LessThanKernel  [intptr: i64]
 
-define void @LessThanKernel(i32 %p0, ptr<i16> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4, ptr<i16> addrspace(global) %p5, i64 %p6, i64 %p7, i8 %p8, ptr<i32> addrspace(global) %p9, i64 %p10, i64 %p11, i8 %p12) {
+define void @LessThanKernel(i32 %p0, ptr<half> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4, ptr<half> addrspace(global) %p5, i64 %p6, i64 %p7, i8 %p8, ptr<i32> addrspace(global) %p9, i64 %p10, i64 %p11, i8 %p12) {
 entry:
   %0 = icmp sge i64 %p11, -2147483648
   %1 = icmp sle i64 %p11, 2147483647
@@ -33,8 +33,8 @@ entry:
   %24 = or i1 %20, %23
   %25 = call ptr @ilgpu.string("X_index_out_of_bounds")
   call void @ilgpu.debug.assert(i1 %24, ptr %25)
-  %26 = getelementptr i16, ptr %p1, i32 %p0
-  %27 = load i16, ptr %26
+  %26 = getelementptr half, ptr %p1, i32 %p0
+  %27 = load half, ptr %26
   %28 = icmp sge i64 %p7, -2147483648
   %29 = icmp sle i64 %p7, 2147483647
   %30 = and i1 %28, %29
@@ -50,10 +50,10 @@ entry:
   %39 = or i1 %35, %38
   %40 = call ptr @ilgpu.string("X_index_out_of_bounds")
   call void @ilgpu.debug.assert(i1 %39, ptr %40)
-  %41 = getelementptr i16, ptr %p5, i32 %p0
-  %42 = load i16, ptr %41
+  %41 = getelementptr half, ptr %p5, i32 %p0
+  %42 = load half, ptr %41
   %43 = getelementptr i32, ptr %p9, i32 %p0
-  %44 = icmp slt i16 %27, %42
+  %44 = fcmp olt half %27, %42
   %45 = select i1 %44, i32 1, i32 0
   store i32 %45, ptr %43
   ret void
