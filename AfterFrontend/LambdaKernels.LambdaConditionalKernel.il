@@ -275,16 +275,6 @@ entry:
   br label %bb1
 
 bb1:
-  call void @.ctor()
-  ret void
-
-}
-
-define void @.ctor() {
-entry:
-  br label %bb1
-
-bb1:
   ret void
 
 }

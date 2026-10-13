@@ -84,7 +84,7 @@ bb1:
   br label %bb2
 
 bb2:
-  %54 = phi i32 [ 0, %bb1 ], [ %66, %bb9 ]
+  %54 = phi i32 [ 0, %bb1 ], [ %70, %bb9 ]
   %55 = phi ptr<%struct.2> addrspace(local) [ %1, %bb1 ], [ %55, %bb9 ]
   %56 = phi ptr<%struct.3> addrspace(local) [ %6, %bb1 ], [ %56, %bb9 ]
   %57 = phi i32 [ %48, %bb1 ], [ %57, %bb9 ]
@@ -96,13 +96,13 @@ bb2:
   %63 = phi i32 [ %52, %bb1 ], [ %63, %bb9 ]
   %64 = phi ptr<%struct.2> addrspace(local) [ %5, %bb1 ], [ %64, %bb9 ]
   %65 = phi ptr<%struct.2> addrspace(local) [ %2, %bb1 ], [ %65, %bb9 ]
-  %66 = add i32 %54, 2
-  %67 = addrspacecast ptr %55 to ptr<%struct.2>
-  %68 = call %struct.3 @get_IntExtent(ptr<%struct.2> %67)
-  store %struct.3 %68, ptr %56
-  %69 = addrspacecast ptr %56 to ptr<%struct.3>
-  %70 = call i32 @get_Y(ptr<%struct.3> %69)
-  %71 = icmp slt i32 %54, %70
+  %66 = addrspacecast ptr %55 to ptr<%struct.2>
+  %67 = call %struct.3 @get_IntExtent(ptr<%struct.2> %66)
+  store %struct.3 %67, ptr %56
+  %68 = addrspacecast ptr %56 to ptr<%struct.3>
+  %69 = call i32 @get_Y(ptr<%struct.3> %68)
+  %70 = add i32 %54, 2
+  %71 = icmp slt i32 %54, %69
   %72 = addrspacecast ptr %58 to ptr<%struct.2>
   %73 = addrspacecast ptr %56 to ptr<%struct.3>
   %74 = addrspacecast ptr %58 to ptr<%struct.2>

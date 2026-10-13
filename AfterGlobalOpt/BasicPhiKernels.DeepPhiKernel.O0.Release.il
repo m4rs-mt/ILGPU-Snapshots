@@ -12,6 +12,8 @@ entry:
   %1 = icmp sle i32 %p2, 100
   %2 = icmp sle i32 %p2, 200
   %3 = icmp sle i32 %p2, 300
+  %4 = bitcast ptr %0 to ptr ; %struct.1 -> %struct.0
+  %5 = bitcast ptr %0 to ptr ; %struct.1 -> %struct.0
   br i1 %1, label %bb8, label %bb1
 
 bb1:
@@ -27,28 +29,28 @@ bb4:
   br label %bb5
 
 bb5:
-  %4 = phi i32 [ 4, %bb3 ], [ 3, %bb4 ]
+  %6 = phi i32 [ 4, %bb3 ], [ 3, %bb4 ]
   br label %bb7
 
 bb6:
   br label %bb7
 
 bb7:
-  %5 = phi i32 [ %4, %bb5 ], [ 2, %bb6 ]
+  %7 = phi i32 [ %6, %bb5 ], [ 2, %bb6 ]
   br label %bb9
 
 bb8:
   br label %bb9
 
 bb9:
-  %6 = phi ptr<%struct.0> addrspace(local)
-  %7 = phi i32 [ %p0, %bb7 ], [ %p0, %bb8 ]
-  %8 = phi i32 [ %5, %bb7 ], [ 1, %bb8 ]
-  %9 = addrspacecast ptr %6 to ptr<%struct.0>
-  %10 = call %view.i32 @get_BaseView(ptr<%struct.0> %9)
-  %11 = call i32 @ComputeLinearIndex(ptr<%struct.0> %9, i32 %7)
-  %12 = getelementptr i32, ptr %10, i32 %11
-  store i32 %8, ptr %12
+  %8 = phi ptr<%struct.0> addrspace(local) [ %4, %bb7 ], [ %5, %bb8 ]
+  %9 = phi i32 [ %p0, %bb7 ], [ %p0, %bb8 ]
+  %10 = phi i32 [ %7, %bb7 ], [ 1, %bb8 ]
+  %11 = addrspacecast ptr %8 to ptr<%struct.0>
+  %12 = call %view.i32 @get_BaseView(ptr<%struct.0> %11)
+  %13 = call i32 @ComputeLinearIndex(ptr<%struct.0> %11, i32 %9)
+  %14 = getelementptr i32, ptr %12, i32 %13
+  store i32 %10, ptr %14
   ret void
 
 }

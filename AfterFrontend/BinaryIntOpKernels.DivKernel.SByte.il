@@ -32,11 +32,11 @@ define i8 @System.Numerics.IDivisionOperators_System.SByte_System.SByte_System.S
 entry:
   %0 = sext i8 %p0 to i32
   %1 = sext i8 %p1 to i32
-  %2 = sdiv i32 %0, %1
-  %3 = trunc i32 %2 to i8
   br label %bb1
 
 bb1:
+  %2 = sdiv i32 %0, %1
+  %3 = trunc i32 %2 to i8
   ret i8 %3
 
 }

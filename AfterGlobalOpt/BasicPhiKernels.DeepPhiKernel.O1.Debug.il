@@ -24,13 +24,21 @@ entry:
   call void @ilgpu.debug.assert(i1 %12, ptr %13)
   %14 = extractvalue %struct.0 %p1, 0
   %15 = getelementptr i32, ptr %14, i32 %p0
-  %16 = icmp sle i32 %p2, 100
-  %17 = icmp sle i32 %p2, 200
-  %18 = icmp sle i32 %p2, 300
-  %19 = select i1 %18, i32 3, i32 4
-  %20 = select i1 %17, i32 2, i32 %19
-  %21 = select i1 %16, i32 1, i32 %20
-  store i32 %21, ptr %15
+  %16 = icmp sgt i32 %p2, 100
+  %17 = icmp sgt i32 %p2, 200
+  %18 = and i1 %16, %17
+  %19 = icmp sgt i32 %p2, 300
+  %20 = and i1 %18, %19
+  %21 = icmp sle i32 %p2, 300
+  %22 = and i1 %18, %21
+  %23 = or i1 %20, %22
+  %24 = icmp sle i32 %p2, 200
+  %25 = and i1 %16, %24
+  %26 = or i1 %23, %25
+  %27 = select i1 %22, i32 3, i32 4
+  %28 = select i1 %23, i32 %27, i32 2
+  %29 = select i1 %26, i32 %28, i32 1
+  store i32 %29, ptr %15
   ret void
 
 }

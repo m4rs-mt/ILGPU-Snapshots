@@ -18,11 +18,9 @@ entry:
   %5 = icmp sge i32 %1, 64
   %6 = add i32 %1, 1
   %7 = call i32 @ilgpu.group.dim()
-  %8 = srem i32 %6, %7
-  %9 = icmp sge i32 %8, 64
-  %10 = addrspacecast ptr %0 to ptr<%struct.1>
-  %11 = getelementptr i32, ptr %3, i32 %8
-  %12 = getelementptr i32, ptr %3, i32 %1
+  %8 = addrspacecast ptr %0 to ptr<%struct.1>
+  %9 = addrspacecast ptr %0 to ptr<%struct.1>
+  %10 = getelementptr i32, ptr %3, i32 %1
   br i1 %2, label %bb2, label %bb1
 
 bb1:
@@ -34,22 +32,25 @@ bb2:
   br i1 %5, label %bb7, label %bb3
 
 bb3:
-  br i1 %9, label %bb5, label %bb4
+  %11 = srem i32 %6, %7
+  %12 = icmp sge i32 %11, 64
+  %13 = getelementptr i32, ptr %3, i32 %11
+  br i1 %12, label %bb5, label %bb4
 
 bb4:
-  %13 = call %view.i32 @get_BaseView(ptr<%struct.1> %10)
-  %14 = call i32 @ComputeLinearIndex(ptr<%struct.1> %10, i32 %p0)
-  %15 = load i32, ptr %11
-  %16 = getelementptr i32, ptr %13, i32 %14
-  store i32 %15, ptr %16
+  %14 = call %view.i32 @get_BaseView(ptr<%struct.1> %8)
+  %15 = call i32 @ComputeLinearIndex(ptr<%struct.1> %8, i32 %p0)
+  %16 = load i32, ptr %13
+  %17 = getelementptr i32, ptr %14, i32 %15
+  store i32 %16, ptr %17
   br label %bb6
 
 bb5:
-  %17 = call %view.i32 @get_BaseView(ptr<%struct.1> %10)
-  %18 = call i32 @ComputeLinearIndex(ptr<%struct.1> %10, i32 %p0)
-  %19 = load i32, ptr %12
-  %20 = getelementptr i32, ptr %17, i32 %18
-  store i32 %19, ptr %20
+  %18 = call %view.i32 @get_BaseView(ptr<%struct.1> %9)
+  %19 = call i32 @ComputeLinearIndex(ptr<%struct.1> %9, i32 %p0)
+  %20 = load i32, ptr %10
+  %21 = getelementptr i32, ptr %18, i32 %19
+  store i32 %20, ptr %21
   br label %bb6
 
 bb6:

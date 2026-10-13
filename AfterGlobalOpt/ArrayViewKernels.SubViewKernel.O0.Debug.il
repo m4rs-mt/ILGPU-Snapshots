@@ -82,24 +82,26 @@ entry:
   %53 = trunc i64 %52 to i32
   %54 = icmp sge i32 %p0, %53
   %55 = addrspacecast ptr %1 to ptr<%struct.1>
+  %56 = addrspacecast ptr %2 to ptr<%struct.0>
+  %57 = addrspacecast ptr %1 to ptr<%struct.1>
   br i1 %54, label %bb2, label %bb1
 
 bb1:
-  %56 = call %view.i32 @get_BaseView(ptr<%struct.1> %55)
-  %57 = call i32 @ComputeLinearIndex(ptr<%struct.1> %55, i32 %p0)
-  %58 = call %view.i32 @get_BaseView(ptr<%struct.0> %51)
-  %59 = call i32 @ComputeLinearIndex(ptr<%struct.0> %51, i32 %p0)
-  %60 = getelementptr i32, ptr %58, i32 %59
-  %61 = load i32, ptr %60
-  %62 = getelementptr i32, ptr %56, i32 %57
-  store i32 %61, ptr %62
+  %58 = call %view.i32 @get_BaseView(ptr<%struct.1> %55)
+  %59 = call i32 @ComputeLinearIndex(ptr<%struct.1> %55, i32 %p0)
+  %60 = call %view.i32 @get_BaseView(ptr<%struct.0> %56)
+  %61 = call i32 @ComputeLinearIndex(ptr<%struct.0> %56, i32 %p0)
+  %62 = getelementptr i32, ptr %60, i32 %61
+  %63 = load i32, ptr %62
+  %64 = getelementptr i32, ptr %58, i32 %59
+  store i32 %63, ptr %64
   br label %bb3
 
 bb2:
-  %63 = call %view.i32 @get_BaseView(ptr<%struct.1> %55)
-  %64 = call i32 @ComputeLinearIndex(ptr<%struct.1> %55, i32 %p0)
-  %65 = getelementptr i32, ptr %63, i32 %64
-  store i32 -1, ptr %65
+  %65 = call %view.i32 @get_BaseView(ptr<%struct.1> %57)
+  %66 = call i32 @ComputeLinearIndex(ptr<%struct.1> %57, i32 %p0)
+  %67 = getelementptr i32, ptr %65, i32 %66
+  store i32 -1, ptr %67
   br label %bb3
 
 bb3:
@@ -126,11 +128,11 @@ entry:
   %1 = alloca i64, i32 1
   %2 = addrspacecast ptr %0 to ptr<i32>
   %3 = call i32 @get_X(ptr<i32> %2)
+  store i64 0, ptr %1
   %4 = addrspacecast ptr %1 to ptr<i64>
-  store i64 0, ptr %4
   %5 = sext i32 %3 to i64
   call void @.ctor(ptr<i64> %4, i64 %5)
-  %6 = load i64, ptr %4
+  %6 = load i64, ptr %1
   ret i64 %6
 
 }

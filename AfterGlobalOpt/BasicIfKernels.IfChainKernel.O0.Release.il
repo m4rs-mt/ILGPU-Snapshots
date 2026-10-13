@@ -12,41 +12,44 @@ entry:
   %1 = icmp ne i32 %p2, 0
   %2 = addrspacecast ptr %0 to ptr<%struct.1>
   %3 = icmp ne i32 %p2, 1
-  %4 = icmp ne i32 %p2, 2
+  %4 = addrspacecast ptr %0 to ptr<%struct.1>
+  %5 = icmp ne i32 %p2, 2
+  %6 = addrspacecast ptr %0 to ptr<%struct.1>
+  %7 = addrspacecast ptr %0 to ptr<%struct.1>
   br i1 %1, label %bb2, label %bb1
 
 bb1:
-  %5 = call %view.i32 @get_BaseView(ptr<%struct.1> %2)
-  %6 = call i32 @ComputeLinearIndex(ptr<%struct.1> %2, i32 %p0)
-  %7 = getelementptr i32, ptr %5, i32 %6
-  store i32 10, ptr %7
+  %8 = call %view.i32 @get_BaseView(ptr<%struct.1> %2)
+  %9 = call i32 @ComputeLinearIndex(ptr<%struct.1> %2, i32 %p0)
+  %10 = getelementptr i32, ptr %8, i32 %9
+  store i32 10, ptr %10
   br label %bb7
 
 bb2:
   br i1 %3, label %bb4, label %bb3
 
 bb3:
-  %8 = call %view.i32 @get_BaseView(ptr<%struct.1> %2)
-  %9 = call i32 @ComputeLinearIndex(ptr<%struct.1> %2, i32 %p0)
-  %10 = getelementptr i32, ptr %8, i32 %9
-  store i32 20, ptr %10
+  %11 = call %view.i32 @get_BaseView(ptr<%struct.1> %4)
+  %12 = call i32 @ComputeLinearIndex(ptr<%struct.1> %4, i32 %p0)
+  %13 = getelementptr i32, ptr %11, i32 %12
+  store i32 20, ptr %13
   br label %bb7
 
 bb4:
-  br i1 %4, label %bb6, label %bb5
+  br i1 %5, label %bb6, label %bb5
 
 bb5:
-  %11 = call %view.i32 @get_BaseView(ptr<%struct.1> %2)
-  %12 = call i32 @ComputeLinearIndex(ptr<%struct.1> %2, i32 %p0)
-  %13 = getelementptr i32, ptr %11, i32 %12
-  store i32 30, ptr %13
+  %14 = call %view.i32 @get_BaseView(ptr<%struct.1> %6)
+  %15 = call i32 @ComputeLinearIndex(ptr<%struct.1> %6, i32 %p0)
+  %16 = getelementptr i32, ptr %14, i32 %15
+  store i32 30, ptr %16
   br label %bb7
 
 bb6:
-  %14 = call %view.i32 @get_BaseView(ptr<%struct.1> %2)
-  %15 = call i32 @ComputeLinearIndex(ptr<%struct.1> %2, i32 %p0)
-  %16 = getelementptr i32, ptr %14, i32 %15
-  store i32 40, ptr %16
+  %17 = call %view.i32 @get_BaseView(ptr<%struct.1> %7)
+  %18 = call i32 @ComputeLinearIndex(ptr<%struct.1> %7, i32 %p0)
+  %19 = getelementptr i32, ptr %17, i32 %18
+  store i32 40, ptr %19
   br label %bb7
 
 bb7:

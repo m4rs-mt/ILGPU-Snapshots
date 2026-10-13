@@ -6,81 +6,89 @@
 
 define void @IfAndOrKernel(i32 %p0, %struct.0 %p1, i32 %p2, i32 %p3) {
 entry:
-  %0 = icmp sle i32 %p2, 0
-  %1 = icmp sle i32 %p3, 0
-  %2 = or i1 %0, %1
-  %3 = extractvalue %struct.0 %p1, 1
-  %4 = icmp sge i64 %3, -2147483648
-  %5 = icmp sle i64 %3, 2147483647
-  %6 = and i1 %4, %5
-  %7 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %8 = icmp sge i32 %p0, 0
-  %9 = trunc i64 %3 to i32
-  %10 = icmp slt i32 %p0, %9
-  %11 = and i1 %8, %10
-  %12 = icmp eq i32 %p0, 0
-  %13 = icmp eq i32 %9, 0
-  %14 = and i1 %12, %13
-  %15 = or i1 %11, %14
-  %16 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %17 = extractvalue %struct.0 %p1, 0
-  %18 = getelementptr i32, ptr %17, i32 %p0
-  %19 = icmp sle i32 %p2, 0
-  %20 = icmp sle i32 %p3, 0
-  %21 = and i1 %19, %20
-  %22 = extractvalue %struct.0 %p1, 1
-  %23 = icmp sge i64 %22, -2147483648
-  %24 = icmp sle i64 %22, 2147483647
+  %0 = icmp sgt i32 %p2, 0
+  %1 = icmp sgt i32 %p3, 0
+  %2 = and i1 %0, %1
+  %3 = icmp sle i32 %p2, 0
+  %4 = icmp sgt i32 %p2, 0
+  %5 = and i1 %3, %4
+  %6 = icmp sgt i32 %p2, 0
+  %7 = icmp sgt i32 %p3, 0
+  %8 = and i1 %6, %7
+  %9 = or i1 %5, %8
+  %10 = icmp sle i32 %p2, 0
+  %11 = or i1 %9, %10
+  %12 = icmp sle i32 %p3, 0
+  %13 = and i1 %11, %12
+  %14 = extractvalue %struct.0 %p1, 1
+  %15 = icmp sge i64 %14, -2147483648
+  %16 = icmp sle i64 %14, 2147483647
+  %17 = and i1 %15, %16
+  %18 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %19 = icmp sge i32 %p0, 0
+  %20 = trunc i64 %14 to i32
+  %21 = icmp slt i32 %p0, %20
+  %22 = and i1 %19, %21
+  %23 = icmp eq i32 %p0, 0
+  %24 = icmp eq i32 %20, 0
   %25 = and i1 %23, %24
-  %26 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %27 = icmp sge i32 %p0, 0
-  %28 = trunc i64 %22 to i32
-  %29 = icmp slt i32 %p0, %28
-  %30 = and i1 %27, %29
-  %31 = icmp eq i32 %p0, 0
-  %32 = icmp eq i32 %28, 0
+  %26 = or i1 %22, %25
+  %27 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %28 = extractvalue %struct.0 %p1, 0
+  %29 = getelementptr i32, ptr %28, i32 %p0
+  %30 = extractvalue %struct.0 %p1, 1
+  %31 = icmp sge i64 %30, -2147483648
+  %32 = icmp sle i64 %30, 2147483647
   %33 = and i1 %31, %32
-  %34 = or i1 %30, %33
-  %35 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %36 = extractvalue %struct.0 %p1, 0
-  %37 = getelementptr i32, ptr %36, i32 %p0
-  %38 = extractvalue %struct.0 %p1, 1
-  %39 = icmp sge i64 %38, -2147483648
-  %40 = icmp sle i64 %38, 2147483647
+  %34 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %35 = icmp sge i32 %p0, 0
+  %36 = trunc i64 %30 to i32
+  %37 = icmp slt i32 %p0, %36
+  %38 = and i1 %35, %37
+  %39 = icmp eq i32 %p0, 0
+  %40 = icmp eq i32 %36, 0
   %41 = and i1 %39, %40
-  %42 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  %43 = icmp sge i32 %p0, 0
-  %44 = trunc i64 %38 to i32
-  %45 = icmp slt i32 %p0, %44
-  %46 = and i1 %43, %45
-  %47 = icmp eq i32 %p0, 0
-  %48 = icmp eq i32 %44, 0
+  %42 = or i1 %38, %41
+  %43 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %44 = extractvalue %struct.0 %p1, 0
+  %45 = getelementptr i32, ptr %44, i32 %p0
+  %46 = extractvalue %struct.0 %p1, 1
+  %47 = icmp sge i64 %46, -2147483648
+  %48 = icmp sle i64 %46, 2147483647
   %49 = and i1 %47, %48
-  %50 = or i1 %46, %49
-  %51 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  %52 = extractvalue %struct.0 %p1, 0
-  %53 = getelementptr i32, ptr %52, i32 %p0
-  br i1 %2, label %bb2, label %bb1
+  %50 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %51 = icmp sge i32 %p0, 0
+  %52 = trunc i64 %46 to i32
+  %53 = icmp slt i32 %p0, %52
+  %54 = and i1 %51, %53
+  %55 = icmp eq i32 %p0, 0
+  %56 = icmp eq i32 %52, 0
+  %57 = and i1 %55, %56
+  %58 = or i1 %54, %57
+  %59 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %60 = extractvalue %struct.0 %p1, 0
+  %61 = getelementptr i32, ptr %60, i32 %p0
+  br i1 %2, label %bb4, label %bb1
 
 bb1:
-  call void @ilgpu.debug.assert(i1 %6, ptr %7)
-  call void @ilgpu.debug.assert(i1 %15, ptr %16)
-  store i32 1, ptr %18
-  br label %bb5
+  br i1 %13, label %bb3, label %bb2
 
 bb2:
-  br i1 %21, label %bb4, label %bb3
+  call void @ilgpu.debug.assert(i1 %17, ptr %18)
+  call void @ilgpu.debug.assert(i1 %26, ptr %27)
+  store i32 2, ptr %29
+  br label %bb5
 
 bb3:
-  call void @ilgpu.debug.assert(i1 %25, ptr %26)
-  call void @ilgpu.debug.assert(i1 %34, ptr %35)
-  store i32 2, ptr %37
+  call void @ilgpu.debug.assert(i1 %33, ptr %34)
+  call void @ilgpu.debug.assert(i1 %42, ptr %43)
+  store i32 0, ptr %45
   br label %bb5
 
 bb4:
-  call void @ilgpu.debug.assert(i1 %41, ptr %42)
-  call void @ilgpu.debug.assert(i1 %50, ptr %51)
-  store i32 0, ptr %53
+  call void @ilgpu.debug.assert(i1 %49, ptr %50)
+  call void @ilgpu.debug.assert(i1 %58, ptr %59)
+  store i32 1, ptr %61
   br label %bb5
 
 bb5:

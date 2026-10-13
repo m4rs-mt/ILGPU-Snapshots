@@ -15,100 +15,113 @@ entry:
   %2 = trunc i64 %1 to i32
   %3 = extractvalue %struct.0 %p0, 0
   %4 = sext i32 %p4 to i64
-  %5 = sdiv i64 %3, %4
-  %6 = trunc i64 %5 to i32
-  %7 = shl i32 %6, 1
-  %8 = extractvalue %struct.0 %p0, 1
-  %9 = ashr i32 %8, 1
-  %10 = add i32 %7, %9
-  %11 = extractvalue %struct.1 %p3, 2 [Span: 2]
-  %12 = extractvalue %struct.2 %11, 0
-  %13 = trunc i64 %12 to i32
-  %14 = icmp sge i32 %10, %13
-  %15 = extractvalue %struct.0 %p0, 0
-  %16 = sext i32 %p4 to i64
-  %17 = srem i64 %15, %16
-  %18 = trunc i64 %17 to i32
-  %19 = shl i32 %18, 1
-  %20 = extractvalue %struct.0 %p0, 1
-  %21 = srem i32 %20, 2
-  %22 = add i32 %19, %21
-  %23 = extractvalue %struct.1 %p3, 2 [Span: 2]
-  %24 = extractvalue %struct.2 %23, 1
-  %25 = trunc i64 %24 to i32
-  %26 = icmp sge i32 %22, %25
-  %27 = or i1 %14, %26
-  %28 = extractvalue %struct.1 %p3, 0
-  %29 = extractvalue %struct.1 %p3, 4
-  %30 = mul i32 %22, %29
-  %31 = add i32 %10, %30
-  %32 = getelementptr float, ptr %28, i32 %31
-  %33 = extractvalue %struct.1 %p1, 0
-  %34 = extractvalue %struct.1 %p1, 4
-  %35 = shl i32 %21, 1
-  %36 = add i32 %9, %35
-  %37 = getelementptr float, ptr @g0, i32 %36
-  %38 = extractvalue %struct.1 %p2, 0
-  %39 = extractvalue %struct.1 %p2, 4
-  %40 = mul i32 %22, %39
-  %41 = shl i32 %21, 1
-  %42 = add i32 %9, %41
-  %43 = getelementptr float, ptr @g1, i32 %42
-  %44 = getelementptr float, ptr @g0, i32 %9
-  %45 = shl i32 %21, 1
-  %46 = getelementptr float, ptr @g1, i32 %45
-  %47 = add i32 %9, 2
-  %48 = getelementptr float, ptr @g0, i32 %47
-  %49 = shl i32 %21, 1
-  %50 = add i32 %49, 1
-  %51 = getelementptr float, ptr @g1, i32 %50
+  %5 = extractvalue %struct.0 %p0, 1
+  %6 = ashr i32 %5, 1
+  %7 = extractvalue %struct.1 %p3, 2 [Span: 2]
+  %8 = extractvalue %struct.2 %7, 0
+  %9 = trunc i64 %8 to i32
+  %10 = extractvalue %struct.0 %p0, 0
+  %11 = sext i32 %p4 to i64
+  %12 = extractvalue %struct.0 %p0, 1
+  %13 = srem i32 %12, 2
+  %14 = extractvalue %struct.1 %p3, 2 [Span: 2]
+  %15 = extractvalue %struct.2 %14, 1
+  %16 = trunc i64 %15 to i32
+  %17 = extractvalue %struct.1 %p3, 0
+  %18 = extractvalue %struct.1 %p3, 4
+  %19 = extractvalue %struct.1 %p1, 0
+  %20 = extractvalue %struct.1 %p1, 4
+  %21 = shl i32 %13, 1
+  %22 = add i32 %6, %21
+  %23 = getelementptr float, ptr @g0, i32 %22
+  %24 = extractvalue %struct.1 %p2, 0
+  %25 = extractvalue %struct.1 %p2, 4
+  %26 = shl i32 %13, 1
+  %27 = add i32 %6, %26
+  %28 = getelementptr float, ptr @g1, i32 %27
+  %29 = getelementptr float, ptr @g0, i32 %6
+  %30 = shl i32 %13, 1
+  %31 = getelementptr float, ptr @g1, i32 %30
+  %32 = add i32 %6, 2
+  %33 = getelementptr float, ptr @g0, i32 %32
+  %34 = shl i32 %13, 1
+  %35 = add i32 %34, 1
+  %36 = getelementptr float, ptr @g1, i32 %35
   br label %bb1
 
 bb1:
   br label %bb2
 
 bb2:
-  %52 = phi i32 [ 0, %bb1 ], [ %54, %bb7 ]
-  %53 = phi float [ 0.0, %bb1 ], [ %72, %bb7 ]
-  %54 = add i32 %52, 2
-  %55 = icmp slt i32 %52, %2
-  %56 = add i32 %21, %52
-  %57 = mul i32 %56, %34
-  %58 = add i32 %10, %57
-  %59 = getelementptr float, ptr %33, i32 %58
-  %60 = add i32 %9, %52
-  %61 = add i32 %60, %40
-  %62 = getelementptr float, ptr %38, i32 %61
-  br i1 %55, label %bb6, label %bb3
+  %37 = phi i32 [ 0, %bb1 ], [ %39, %bb11 ]
+  %38 = phi float [ 0.0, %bb1 ], [ %73, %bb11 ]
+  %39 = add i32 %37, 2
+  %40 = icmp slt i32 %37, %2
+  %41 = sdiv i64 %3, %4
+  %42 = trunc i64 %41 to i32
+  %43 = shl i32 %42, 1
+  %44 = add i32 %43, %6
+  %45 = icmp sge i32 %44, %9
+  %46 = srem i64 %10, %11
+  %47 = trunc i64 %46 to i32
+  %48 = shl i32 %47, 1
+  %49 = add i32 %48, %13
+  %50 = icmp slt i32 %49, %16
+  %51 = mul i32 %49, %18
+  %52 = add i32 %44, %51
+  %53 = getelementptr float, ptr %17, i32 %52
+  %54 = add i32 %13, %37
+  %55 = mul i32 %54, %20
+  %56 = add i32 %44, %55
+  %57 = getelementptr float, ptr %19, i32 %56
+  %58 = add i32 %6, %37
+  %59 = mul i32 %49, %25
+  %60 = add i32 %58, %59
+  %61 = getelementptr float, ptr %24, i32 %60
+  br i1 %40, label %bb10, label %bb3
 
 bb3:
-  br i1 %27, label %bb5, label %bb4
+  br i1 %45, label %bb6, label %bb4
 
 bb4:
-  store float %53, ptr %32
   br label %bb5
 
 bb5:
-  ret void
+  br label %bb7
 
 bb6:
-  %63 = load float, ptr %59
-  store float %63, ptr %37
-  %64 = load float, ptr %62
-  store float %64, ptr %43
-  call void @ilgpu.barrier.group()
-  %65 = load float, ptr %44
-  %66 = load float, ptr %46
-  %67 = load float, ptr %48
-  %68 = fmul float %65, %66
-  %69 = fadd float %53, %68
   br label %bb7
 
 bb7:
-  %70 = load float, ptr %51
+  %62 = phi i1 [ %50, %bb5 ], [ false, %bb6 ]
+  %63 = xor i1 %62, -1
+  br i1 %63, label %bb9, label %bb8
+
+bb8:
+  store float %38, ptr %53
+  br label %bb9
+
+bb9:
+  ret void
+
+bb10:
+  %64 = load float, ptr %57
+  store float %64, ptr %23
+  %65 = load float, ptr %61
+  store float %65, ptr %28
   call void @ilgpu.barrier.group()
-  %71 = fmul float %67, %70
-  %72 = fadd float %69, %71
+  %66 = load float, ptr %29
+  %67 = load float, ptr %31
+  %68 = load float, ptr %33
+  %69 = fmul float %66, %67
+  %70 = fadd float %38, %69
+  br label %bb11
+
+bb11:
+  %71 = load float, ptr %36
+  call void @ilgpu.barrier.group()
+  %72 = fmul float %68, %71
+  %73 = fadd float %70, %72
   br label %bb2
 
 }

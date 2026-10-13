@@ -12,33 +12,35 @@ entry:
   %1 = icmp sle i32 %p2, 10
   %2 = icmp sle i32 %p2, 20
   %3 = addrspacecast ptr %0 to ptr<%struct.1>
+  %4 = addrspacecast ptr %0 to ptr<%struct.1>
+  %5 = addrspacecast ptr %0 to ptr<%struct.1>
   br i1 %1, label %bb5, label %bb1
 
 bb1:
   br i1 %2, label %bb3, label %bb2
 
 bb2:
-  %4 = call %view.i32 @get_BaseView(ptr<%struct.1> %3)
-  %5 = call i32 @ComputeLinearIndex(ptr<%struct.1> %3, i32 %p0)
-  %6 = getelementptr i32, ptr %4, i32 %5
-  store i32 3, ptr %6
+  %6 = call %view.i32 @get_BaseView(ptr<%struct.1> %3)
+  %7 = call i32 @ComputeLinearIndex(ptr<%struct.1> %3, i32 %p0)
+  %8 = getelementptr i32, ptr %6, i32 %7
+  store i32 3, ptr %8
   br label %bb4
 
 bb3:
-  %7 = call %view.i32 @get_BaseView(ptr<%struct.1> %3)
-  %8 = call i32 @ComputeLinearIndex(ptr<%struct.1> %3, i32 %p0)
-  %9 = getelementptr i32, ptr %7, i32 %8
-  store i32 2, ptr %9
+  %9 = call %view.i32 @get_BaseView(ptr<%struct.1> %4)
+  %10 = call i32 @ComputeLinearIndex(ptr<%struct.1> %4, i32 %p0)
+  %11 = getelementptr i32, ptr %9, i32 %10
+  store i32 2, ptr %11
   br label %bb4
 
 bb4:
   br label %bb6
 
 bb5:
-  %10 = call %view.i32 @get_BaseView(ptr<%struct.1> %3)
-  %11 = call i32 @ComputeLinearIndex(ptr<%struct.1> %3, i32 %p0)
-  %12 = getelementptr i32, ptr %10, i32 %11
-  store i32 1, ptr %12
+  %12 = call %view.i32 @get_BaseView(ptr<%struct.1> %5)
+  %13 = call i32 @ComputeLinearIndex(ptr<%struct.1> %5, i32 %p0)
+  %14 = getelementptr i32, ptr %12, i32 %13
+  store i32 1, ptr %14
   br label %bb6
 
 bb6:

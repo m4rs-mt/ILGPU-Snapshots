@@ -13,7 +13,7 @@ bb1:
   br label %bb2
 
 bb2:
-  %1 = phi i32 [ 0, %bb1 ], [ %17, %bb6 ]
+  %1 = phi i32 [ 0, %bb1 ], [ %13, %bb6 ]
   %2 = phi ptr<%struct.0> addrspace(local) [ %0, %bb1 ], [ %10, %bb6 ]
   %3 = phi i32 [ %p0, %bb1 ], [ %11, %bb6 ]
   %4 = phi i32 [ 0, %bb1 ], [ %12, %bb6 ]
@@ -30,16 +30,16 @@ bb4:
   br label %bb5
 
 bb5:
-  %8 = phi i32 [ 0, %bb4 ], [ %13, %bb7 ]
+  %8 = phi i32 [ 0, %bb4 ], [ %14, %bb7 ]
   %9 = phi i32 [ %1, %bb4 ], [ %9, %bb7 ]
   %10 = phi ptr<%struct.0> addrspace(local) [ %2, %bb4 ], [ %10, %bb7 ]
   %11 = phi i32 [ %3, %bb4 ], [ %11, %bb7 ]
-  %12 = phi i32 [ %4, %bb4 ], [ %16, %bb7 ]
-  %13 = add i32 %8, 1
-  %14 = shl i32 %9, 2
-  %15 = add i32 %14, %8
-  %16 = add i32 %12, %15
-  %17 = add i32 %9, 1
+  %12 = phi i32 [ %4, %bb4 ], [ %17, %bb7 ]
+  %13 = add i32 %9, 1
+  %14 = add i32 %8, 1
+  %15 = shl i32 %9, 2
+  %16 = add i32 %15, %8
+  %17 = add i32 %12, %16
   %18 = icmp slt i32 %8, 4
   br i1 %18, label %bb7, label %bb6
 

@@ -15,14 +15,11 @@ entry:
   %4 = icmp sge i32 %0, 64
   %5 = add i32 %0, 1
   %6 = call i32 @ilgpu.group.dim()
-  %7 = srem i32 %5, %6
-  %8 = icmp sge i32 %7, 64
-  %9 = getelementptr i32, ptr %2, i32 %7
+  %7 = extractvalue %struct.0 %p1, 0
+  %8 = getelementptr i32, ptr %7, i32 %p0
+  %9 = getelementptr i32, ptr %2, i32 %0
   %10 = extractvalue %struct.0 %p1, 0
   %11 = getelementptr i32, ptr %10, i32 %p0
-  %12 = getelementptr i32, ptr %2, i32 %0
-  %13 = extractvalue %struct.0 %p1, 0
-  %14 = getelementptr i32, ptr %13, i32 %p0
   br i1 %1, label %bb2, label %bb1
 
 bb1:
@@ -34,16 +31,19 @@ bb2:
   br i1 %4, label %bb7, label %bb3
 
 bb3:
-  br i1 %8, label %bb5, label %bb4
+  %12 = srem i32 %5, %6
+  %13 = icmp sge i32 %12, 64
+  %14 = getelementptr i32, ptr %2, i32 %12
+  br i1 %13, label %bb5, label %bb4
 
 bb4:
-  %15 = load i32, ptr %9
-  store i32 %15, ptr %11
+  %15 = load i32, ptr %14
+  store i32 %15, ptr %8
   br label %bb6
 
 bb5:
-  %16 = load i32, ptr %12
-  store i32 %16, ptr %14
+  %16 = load i32, ptr %9
+  store i32 %16, ptr %11
   br label %bb6
 
 bb6:

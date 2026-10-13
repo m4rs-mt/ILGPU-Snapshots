@@ -32,11 +32,11 @@ define i8 @System.Numerics.IDivisionOperators_System.Byte_System.Byte_System.Byt
 entry:
   %0 = zext i8 %p0 to i32
   %1 = zext i8 %p1 to i32
-  %2 = sdiv i32 %0, %1
-  %3 = trunc i32 %2 to i8
   br label %bb1
 
 bb1:
+  %2 = sdiv i32 %0, %1
+  %3 = trunc i32 %2 to i8
   ret i8 %3
 
 }
