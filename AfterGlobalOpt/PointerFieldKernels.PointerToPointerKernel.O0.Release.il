@@ -1,0 +1,112 @@
+; stage: AfterGlobalOpt  opt: O0
+; module: PointerToPointerKernel  [intptr: i64]
+
+%view.i32 = view i32
+%struct.0 = type { %view.i32, i64, i8 }
+
+define void @PointerToPointerKernel(i32 %p0, %struct.0 %p1) {
+entry:
+  %0 = alloca %struct.0, i32 1
+  store %struct.0 %p1, ptr %0
+  %1 = alloca i32, i32 1
+  store i32 0, ptr %1
+  %2 = alloca i32, i32 1
+  store i32 0, ptr %2
+  %3 = alloca ptr<i32> addrspace(local), i32 1
+  store ptr<i32> addrspace(local) null, ptr %3
+  %4 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %0)
+  %5 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
+  %6 = getelementptr i32, ptr %4, i32 %5
+  %7 = load i32, ptr %6
+  store i32 %7, ptr %1
+  store i32 7, ptr %2
+  store ptr<i32> addrspace(local) %1, ptr %3
+  %8 = and i32 %p0, 1
+  %9 = icmp ule i32 %8, 0
+  %10 = bitcast ptr %3 to ptr ; ptr<i32> addrspace(local) -> ptr<void> addrspace(local)
+  %11 = bitcast ptr %2 to ptr ; i32 -> void
+  %12 = bitcast ptr %3 to ptr ; ptr<i32> addrspace(local) -> ptr<void> addrspace(local)
+  br i1 %9, label %bb2, label %bb1
+
+bb1:
+  store ptr<void> addrspace(local) %11, ptr %10
+  br label %bb2
+
+bb2:
+  %13 = load ptr<void> addrspace(local), ptr %12
+  %14 = bitcast ptr %13 to ptr ; void -> i32
+  %15 = load i32, ptr %14
+  %16 = bitcast ptr %13 to ptr ; void -> i32
+  %17 = add i32 %15, 1
+  store i32 %17, ptr %16
+  %18 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %0)
+  %19 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
+  %20 = load i32, ptr %1
+  %21 = load i32, ptr %2
+  %22 = load ptr<i32> addrspace(local), ptr %3
+  %23 = load i32, ptr %22
+  %24 = getelementptr i32, ptr %18, i32 %19
+  %25 = mul i32 %21, 10
+  %26 = add i32 %20, %25
+  %27 = mul i32 %23, 100
+  %28 = add i32 %26, %27
+  store i32 %28, ptr %24
+  ret void
+
+}
+
+define i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %p0, i32 %p1) {
+entry:
+  %0 = getelementptr inbounds %struct.0, ptr %p0, i32 0, i32 2
+  %1 = load i8, ptr %0
+  %2 = alloca i64, i32 1
+  store i64 0, ptr %2
+  %3 = call i64 @get_Extent(ptr<%struct.0> addrspace(local) %p0)
+  store i64 %3, ptr %2
+  %4 = call i32 @ToIntIndex(ptr<i64> addrspace(local) %2)
+  %5 = call i32 @ComputeElementIndexChecked(i8 %1, i32 %p1, i32 %4)
+  ret i32 %5
+
+}
+
+define i32 @ComputeElementIndexChecked(i8 %p0, i32 %p1, i32 %p2) {
+entry:
+  %0 = alloca i32, i32 1
+  store i32 %p1, ptr %0
+  %1 = call i32 @get_X(ptr<i32> addrspace(local) %0)
+  ret i32 %1
+
+}
+
+define i32 @get_X(ptr<i32> addrspace(local) %p0) {
+entry:
+  %0 = load i32, ptr %p0
+  ret i32 %0
+
+}
+
+define i32 @ToIntIndex(ptr<i64> addrspace(local) %p0) {
+entry:
+  %0 = load i64, ptr %p0
+  %1 = load i64, ptr %p0
+  %2 = trunc i64 %1 to i32
+  ret i32 %2
+
+}
+
+define i64 @get_Extent(ptr<%struct.0> addrspace(local) %p0) {
+entry:
+  %0 = getelementptr inbounds %struct.0, ptr %p0, i32 0, i32 1
+  %1 = load i64, ptr %0
+  ret i64 %1
+
+}
+
+define %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %p0) {
+entry:
+  %0 = getelementptr inbounds %struct.0, ptr %p0, i32 0, i32 0
+  %1 = load %view.i32, ptr %0
+  ret %view.i32 %1
+
+}
+
