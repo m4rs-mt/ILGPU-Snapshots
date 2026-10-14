@@ -1,8 +1,8 @@
 ; stage: AfterBackendTransforms  backend: Cuda  opt: O0
 ; module: AllBuiltinsKernel  [intptr: i64]
 
-%struct.0 = type { ptr<i32> addrspace(global), i64 }
-%struct.1 = type { ptr<i32> addrspace(global), i64, i64, i8 }
+%struct.0 = type { ptr<i32>, i64 }
+%struct.1 = type { ptr<i32>, i64, i64, i8 }
 
 define void @AllBuiltinsKernel(i32 %p0, %struct.1 %p1) {
 entry:

@@ -3,7 +3,7 @@
 
 @g0 = internal global i32 zeroinitializer ; local
 
-define void @AccumulateKernel(i32 %p0, ptr<i32> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4) {
+define void @AccumulateKernel(i32 %p0, ptr<i32> %p1, i64 %p2, i64 %p3, i8 %p4) {
 entry:
   %0 = getelementptr i32, ptr @g0, i32 1
   %1 = getelementptr i32, ptr @g0, i32 2

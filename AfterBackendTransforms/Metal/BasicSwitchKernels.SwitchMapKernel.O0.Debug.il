@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: Metal  opt: O0
 ; module: SwitchMapKernel  [intptr: i64]
 
-define void @SwitchMapKernel(i32 %p0, i32 %p1, ptr<i32> addrspace(global) %p2, i64 %p3, i64 %p4, i8 %p5) {
+define void @SwitchMapKernel(i32 %p0, i32 %p1, ptr<i32> %p2, i64 %p3, i64 %p4, i8 %p5) {
 entry:
   %0 = icmp sge i64 %p4, -2147483648
   %1 = icmp sle i64 %p4, 2147483647

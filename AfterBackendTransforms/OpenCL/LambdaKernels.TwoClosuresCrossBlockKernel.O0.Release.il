@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: OpenCL  opt: O0
 ; module: TwoClosuresCrossBlockKernel  [intptr: i64]
 
-define void @TwoClosuresCrossBlockKernel(i32 %p0, i32 %p1, i32 %p2, ptr<i32> addrspace(global) %p3, i64 %p4, i64 %p5, i8 %p6) {
+define void @TwoClosuresCrossBlockKernel(i32 %p0, i32 %p1, i32 %p2, ptr<i32> %p3, i64 %p4, i64 %p5, i8 %p6) {
 entry:
   %0 = icmp sgt i32 %p0, 0
   %1 = icmp sgt i32 %p0, 0

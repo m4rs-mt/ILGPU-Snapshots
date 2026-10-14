@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: OpenCL  opt: O0
 ; module: LambdaConditionalKernel  [intptr: i64]
 
-define void @LambdaConditionalKernel(i32 %p0, i32 %p1, ptr<i32> addrspace(global) %p2, i64 %p3, i64 %p4, i8 %p5) {
+define void @LambdaConditionalKernel(i32 %p0, i32 %p1, ptr<i32> %p2, i64 %p3, i64 %p4, i8 %p5) {
 entry:
   %0 = icmp sgt i32 %p0, %p1
   %1 = getelementptr i32, ptr %p2, i32 %p0

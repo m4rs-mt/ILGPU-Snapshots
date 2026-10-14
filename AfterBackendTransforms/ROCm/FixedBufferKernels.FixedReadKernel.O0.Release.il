@@ -2,10 +2,10 @@
 ; module: FixedReadKernel  [intptr: i64]
 
 %struct.0 = type { i32 }
-%struct.1 = type { ptr<%struct.0> addrspace(global), i64 }
-%struct.2 = type { ptr<%struct.0> addrspace(global), i64, i64, i8 }
-%struct.3 = type { ptr<i32> addrspace(global), i64 }
-%struct.4 = type { ptr<i32> addrspace(global), i64, i64, i8 }
+%struct.1 = type { ptr<%struct.0>, i64 }
+%struct.2 = type { ptr<%struct.0>, i64, i64, i8 }
+%struct.3 = type { ptr<i32>, i64 }
+%struct.4 = type { ptr<i32>, i64, i64, i8 }
 
 define void @FixedReadKernel(i32 %p0, %struct.2 %p1, %struct.4 %p2) {
 entry:

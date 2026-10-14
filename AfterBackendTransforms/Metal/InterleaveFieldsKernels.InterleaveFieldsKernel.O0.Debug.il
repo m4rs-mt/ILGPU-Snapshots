@@ -4,7 +4,7 @@
 %struct.0 = type { i32, i32, i32, i32 }
 %struct.1 = type { i32, i32, i32, i32, i32, i32, i32, i32 }
 
-define void @InterleaveFieldsKernel(i32 %p0, ptr<%struct.1> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4) {
+define void @InterleaveFieldsKernel(i32 %p0, ptr<%struct.1> %p1, i64 %p2, i64 %p3, i8 %p4) {
 entry:
   %0 = icmp sge i64 %p3, -2147483648
   %1 = icmp sle i64 %p3, 2147483647

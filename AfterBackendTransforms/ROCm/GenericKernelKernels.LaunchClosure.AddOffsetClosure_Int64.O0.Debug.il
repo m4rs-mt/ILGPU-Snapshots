@@ -1,8 +1,8 @@
 ; stage: AfterBackendTransforms  backend: ROCm  opt: O0
 ; module: LaunchClosure  [intptr: i64]
 
-%struct.0 = type { ptr<i64> addrspace(global), i64 }
-%struct.1 = type { ptr<i64> addrspace(global), i64, i64, i8 }
+%struct.0 = type { ptr<i64>, i64 }
+%struct.1 = type { ptr<i64>, i64, i64, i8 }
 
 define void @LaunchClosure(i32 %p0, %struct.1 %p1, i32 %p2, i64 %p3) {
 entry:

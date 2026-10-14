@@ -1,8 +1,8 @@
 ; stage: AfterBackendTransforms  backend: ROCm  opt: O0
 ; module: FloatArrayKernel  [intptr: i64]
 
-%struct.0 = type { ptr<float> addrspace(global), i64 }
-%struct.1 = type { ptr<float> addrspace(global), i64, i64, i8 }
+%struct.0 = type { ptr<float>, i64 }
+%struct.1 = type { ptr<float>, i64, i64, i8 }
 
 @g0 = internal global float zeroinitializer ; local
 

@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: OpenCL  opt: O0
 ; module: FloatToUInt32Kernel  [intptr: i64]
 
-define void @FloatToUInt32Kernel(i32 %p0, ptr<float> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4, ptr<i32> addrspace(global) %p5, i64 %p6, i64 %p7, i8 %p8) {
+define void @FloatToUInt32Kernel(i32 %p0, ptr<float> %p1, i64 %p2, i64 %p3, i8 %p4, ptr<i32> %p5, i64 %p6, i64 %p7, i8 %p8) {
 entry:
   %0 = alloca float, i32 1
   store float 0.0, ptr %0

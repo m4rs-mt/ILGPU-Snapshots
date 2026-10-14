@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: OpenCL  opt: O0
 ; module: MultiCaptureKernel  [intptr: i64]
 
-define void @MultiCaptureKernel(i32 %p0, i32 %p1, i32 %p2, ptr<i32> addrspace(global) %p3, i64 %p4, i64 %p5, i8 %p6) {
+define void @MultiCaptureKernel(i32 %p0, i32 %p1, i32 %p2, ptr<i32> %p3, i64 %p4, i64 %p5, i8 %p6) {
 entry:
   %0 = getelementptr i32, ptr %p3, i32 %p0
   %1 = mul i32 %p0, %p1

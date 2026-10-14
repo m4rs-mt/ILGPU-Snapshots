@@ -3,7 +3,7 @@
 
 @g0 = internal global float zeroinitializer ; local
 
-define void @FloatArrayKernel(i32 %p0, ptr<float> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4) {
+define void @FloatArrayKernel(i32 %p0, ptr<float> %p1, i64 %p2, i64 %p3, i8 %p4) {
 entry:
   store float 1.5, ptr @g0
   %0 = getelementptr float, ptr @g0, i32 1

@@ -3,7 +3,7 @@
 
 @g0 = internal global i32 zeroinitializer ; shared
 
-define void @SharedMemoryVariableKernel(i32 %p0, ptr<i32> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4) {
+define void @SharedMemoryVariableKernel(i32 %p0, ptr<i32> %p1, i64 %p2, i64 %p3, i8 %p4) {
 entry:
   %0 = call i32 @ilgpu.group.index()
   %1 = icmp sge i32 %0, 32

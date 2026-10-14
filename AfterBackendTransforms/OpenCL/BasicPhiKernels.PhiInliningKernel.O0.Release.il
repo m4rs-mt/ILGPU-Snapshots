@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: OpenCL  opt: O0
 ; module: PhiInliningKernel  [intptr: i64]
 
-define void @PhiInliningKernel(i32 %p0, i32 %p1, i32 %p2, ptr<i32> addrspace(global) %p3, i64 %p4, i64 %p5, i8 %p6) {
+define void @PhiInliningKernel(i32 %p0, i32 %p1, i32 %p2, ptr<i32> %p3, i64 %p4, i64 %p5, i8 %p6) {
 entry:
   %0 = icmp sle i32 %p1, %p2
   %1 = sub i32 %p1, %p2

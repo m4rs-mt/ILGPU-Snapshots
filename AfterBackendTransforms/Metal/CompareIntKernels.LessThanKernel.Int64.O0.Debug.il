@@ -1,7 +1,7 @@
 ; stage: AfterBackendTransforms  backend: Metal  opt: O0
 ; module: LessThanKernel  [intptr: i64]
 
-define void @LessThanKernel(i32 %p0, ptr<i64> addrspace(global) %p1, i64 %p2, i64 %p3, i8 %p4, ptr<i64> addrspace(global) %p5, i64 %p6, i64 %p7, i8 %p8, ptr<i32> addrspace(global) %p9, i64 %p10, i64 %p11, i8 %p12) {
+define void @LessThanKernel(i32 %p0, ptr<i64> %p1, i64 %p2, i64 %p3, i8 %p4, ptr<i64> %p5, i64 %p6, i64 %p7, i8 %p8, ptr<i32> %p9, i64 %p10, i64 %p11, i8 %p12) {
 entry:
   %0 = icmp sge i64 %p11, -2147483648
   %1 = icmp sle i64 %p11, 2147483647

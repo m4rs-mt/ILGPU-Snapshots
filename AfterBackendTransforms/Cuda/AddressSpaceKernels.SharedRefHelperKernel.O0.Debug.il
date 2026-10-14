@@ -1,0 +1,66 @@
+; stage: AfterBackendTransforms  backend: Cuda  opt: O0
+; module: SharedRefHelperKernel  [intptr: i64]
+
+%struct.0 = type { ptr<i32>, i64 }
+%struct.1 = type { ptr<i32>, i64, i64, i8 }
+
+@g0 = internal global i32 zeroinitializer ; shared
+
+define void @SharedRefHelperKernel(i32 %p0, %struct.1 %p1) {
+entry:
+  %0 = call i32 @ilgpu.group.index()
+  %1 = icmp sge i32 %0, 32
+  %2 = getelementptr i32, ptr @g0, i32 %0
+  %3 = mul i32 %p0, 10
+  %4 = getelementptr i32, ptr @g0, i32 %0
+  %5 = icmp sge i32 %0, 32
+  %6 = extractvalue %struct.1 %p1, 2
+  %7 = icmp sge i64 %6, -2147483648
+  %8 = icmp sle i64 %6, 2147483647
+  %9 = and i1 %7, %8
+  %10 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  %11 = icmp sge i32 %p0, 0
+  %12 = trunc i64 %6 to i32
+  %13 = icmp slt i32 %p0, %12
+  %14 = and i1 %11, %13
+  %15 = icmp eq i32 %p0, 0
+  %16 = icmp eq i32 %12, 0
+  %17 = and i1 %15, %16
+  %18 = or i1 %14, %17
+  %19 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  %20 = getelementptr i32, ptr @g0, i32 %0
+  %21 = extractvalue %struct.1 %p1, 0 [Span: 2]
+  %22 = extractvalue %struct.0 %21, 0
+  %23 = getelementptr i32, ptr %22, i32 %p0
+  br i1 %1, label %bb2, label %bb1
+
+bb1:
+  store i32 %3, ptr %2
+  call void @Increment(ptr<i32> addrspace(shared) %4)
+  br label %bb2
+
+bb2:
+  call void @ilgpu.barrier.group()
+  br i1 %5, label %bb4, label %bb3
+
+bb3:
+  call void @ilgpu.debug.assert(i1 %9, ptr %10)
+  call void @ilgpu.debug.assert(i1 %18, ptr %19)
+  %24 = load i32, ptr %20
+  store i32 %24, ptr %23
+  br label %bb4
+
+bb4:
+  ret void
+
+}
+
+define void @Increment(ptr<i32> addrspace(shared) %p0) {
+entry:
+  %0 = load i32, ptr %p0
+  %1 = add i32 %0, 1
+  store i32 %1, ptr %p0
+  ret void
+
+}
+

@@ -1,10 +1,10 @@
 ; stage: AfterBackendTransforms  backend: ROCm  opt: O0
 ; module: LessThanKernel  [intptr: i64]
 
-%struct.0 = type { ptr<float> addrspace(global), i64 }
-%struct.1 = type { ptr<float> addrspace(global), i64, i64, i8 }
-%struct.2 = type { ptr<i32> addrspace(global), i64 }
-%struct.3 = type { ptr<i32> addrspace(global), i64, i64, i8 }
+%struct.0 = type { ptr<float>, i64 }
+%struct.1 = type { ptr<float>, i64, i64, i8 }
+%struct.2 = type { ptr<i32>, i64 }
+%struct.3 = type { ptr<i32>, i64, i64, i8 }
 
 define void @LessThanKernel(i32 %p0, %struct.1 %p1, %struct.1 %p2, %struct.3 %p3) {
 entry:
