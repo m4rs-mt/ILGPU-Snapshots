@@ -14,32 +14,31 @@ entry:
   %5 = icmp sgt i32 %p4, 0
   %6 = and i1 %4, %5
   %7 = or i1 %2, %6
-  %8 = icmp sgt i32 %p2, 0
-  %9 = icmp sle i32 %p2, 0
-  %10 = icmp sgt i32 %p3, 0
-  %11 = or i1 %9, %10
-  %12 = icmp sgt i32 %p4, 0
-  %13 = or i1 %11, %12
-  %14 = and i1 %8, %13
-  %15 = icmp sgt i32 %p5, 0
-  %16 = or i1 %14, %15
-  %17 = icmp sgt i32 %p6, 0
-  %18 = and i1 %16, %17
-  %19 = select i1 %18, i32 1, i32 0
-  %20 = select i1 %7, i32 1, i32 %19
-  %21 = icmp eq i32 %20, 0
-  %22 = extractvalue %struct.0 %p1, 0
-  %23 = getelementptr i32, ptr %22, i32 %p0
-  %24 = extractvalue %struct.0 %p1, 0
-  %25 = getelementptr i32, ptr %24, i32 %p0
-  br i1 %21, label %bb2, label %bb1
+  %8 = icmp sle i32 %p2, 0
+  %9 = icmp sgt i32 %p3, 0
+  %10 = or i1 %8, %9
+  %11 = icmp sgt i32 %p4, 0
+  %12 = or i1 %10, %11
+  %13 = and i1 %0, %12
+  %14 = icmp sgt i32 %p5, 0
+  %15 = or i1 %13, %14
+  %16 = icmp sgt i32 %p6, 0
+  %17 = and i1 %15, %16
+  %18 = select i1 %17, i32 1, i32 0
+  %19 = select i1 %7, i32 1, i32 %18
+  %20 = icmp eq i32 %19, 0
+  %21 = extractvalue %struct.0 %p1, 0
+  %22 = getelementptr i32, ptr %21, i32 %p0
+  %23 = extractvalue %struct.0 %p1, 0
+  %24 = getelementptr i32, ptr %23, i32 %p0
+  br i1 %20, label %bb2, label %bb1
 
 bb1:
-  store i32 1, ptr %23
+  store i32 1, ptr %22
   br label %bb3
 
 bb2:
-  store i32 0, ptr %25
+  store i32 0, ptr %24
   br label %bb3
 
 bb3:
