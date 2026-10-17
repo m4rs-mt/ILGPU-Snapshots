@@ -17,7 +17,7 @@ entry:
   %3 = extractvalue %struct.0 %p0, 0
   %4 = sext i32 %p4 to i64
   %5 = extractvalue %struct.0 %p0, 1
-  %6 = ashr i32 %5, 1
+  %6 = sdiv i32 %5, 2
   %7 = extractvalue %struct.2 %p3, 1 [Span: 2]
   %8 = extractvalue %struct.1 %7, 0
   %9 = trunc i64 %8 to i32

@@ -28,7 +28,7 @@ entry:
   %17 = extractvalue %struct.0 %p0, 0
   %18 = sext i32 %p1 to i64
   %19 = extractvalue %struct.0 %p0, 1
-  %20 = ashr i32 %19, 1
+  %20 = sdiv i32 %19, 2
   %21 = trunc i64 %p14 to i32
   %22 = icmp sge i64 %p14, -2147483648
   %23 = icmp sle i64 %p14, 2147483647
