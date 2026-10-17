@@ -308,13 +308,11 @@ entry:
 
 bb1:
   %4 = call i32 @get_X(ptr<%struct.3> %2)
-  %5 = call i32 @get_XStride(ptr<i32> %3)
-  %6 = call i32 @get_Y(ptr<%struct.3> %2)
-  %7 = call i32 @get_YStride(ptr<i32> %3)
-  %8 = mul i32 %4, %5
-  %9 = mul i32 %6, %7
-  %10 = add i32 %8, %9
-  ret i32 %10
+  %5 = call i32 @get_Y(ptr<%struct.3> %2)
+  %6 = call i32 @get_YStride(ptr<i32> %3)
+  %7 = mul i32 %5, %6
+  %8 = add i32 %4, %7
+  ret i32 %8
 
 }
 
@@ -325,15 +323,6 @@ entry:
 bb1:
   %0 = load i32, ptr %p0
   ret i32 %0
-
-}
-
-define i32 @get_XStride(ptr<i32> %p0) {
-entry:
-  br label %bb1
-
-bb1:
-  ret i32 1
 
 }
 

@@ -183,23 +183,11 @@ entry:
   %1 = alloca i32, i32 1
   store i32 %p1, ptr %1
   %2 = addrspacecast ptr %1 to ptr<i32>
-  %3 = addrspacecast ptr %0 to ptr<i8>
   br label %bb1
 
 bb1:
-  %4 = call i32 @get_X(ptr<i32> %2)
-  %5 = call i32 @get_XStride(ptr<i8> %3)
-  %6 = mul i32 %4, %5
-  ret i32 %6
-
-}
-
-define i32 @get_XStride(ptr<i8> %p0) {
-entry:
-  br label %bb1
-
-bb1:
-  ret i32 1
+  %3 = call i32 @get_X(ptr<i32> %2)
+  ret i32 %3
 
 }
 

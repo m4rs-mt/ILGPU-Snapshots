@@ -85,21 +85,10 @@ entry:
 
 define i32 @ComputeElementIndexChecked(i8 %p0, i32 %p1, i32 %p2) {
 entry:
-  %0 = alloca i8, i32 1
-  store i8 %p0, ptr %0
-  %1 = alloca i32, i32 1
-  store i32 %p1, ptr %1
-  %2 = call i32 @get_X(ptr<i32> addrspace(local) %1)
-  %3 = addrspacecast ptr %0 to ptr<i8>
-  %4 = call i32 @get_XStride(ptr<i8> %3)
-  %5 = mul i32 %2, %4
-  ret i32 %5
-
-}
-
-define i32 @get_XStride(ptr<i8> %p0) {
-entry:
-  ret i32 1
+  %0 = alloca i32, i32 1
+  store i32 %p1, ptr %0
+  %1 = call i32 @get_X(ptr<i32> addrspace(local) %0)
+  ret i32 %1
 
 }
 
