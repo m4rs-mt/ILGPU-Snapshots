@@ -37,34 +37,31 @@ bb1:
   br label %bb2
 
 bb2:
-  br label %bb3
-
-bb3:
   store i32 %p0, ptr %7
   call void @ilgpu.barrier.group()
-  br i1 %8, label %bb5, label %bb4
+  br i1 %8, label %bb4, label %bb3
 
-bb4:
+bb3:
   %21 = load i32, ptr %18
   %22 = add i32 %21, 1
   store i32 %22, ptr %18
-  br label %bb5
+  br label %bb4
 
-bb5:
-  %23 = phi %struct.1 [ %p1, %bb3 ], [ %p1, %bb4 ]
+bb4:
+  %23 = phi %struct.1 [ %p1, %bb2 ], [ %p1, %bb3 ]
   call void @ilgpu.barrier.group()
   %24 = extractvalue %struct.1 %23, 0
   %25 = getelementptr i32, ptr %24, i32 %p0
-  br i1 %19, label %bb7, label %bb6
+  br i1 %19, label %bb6, label %bb5
 
-bb6:
+bb5:
   %26 = load i32, ptr %25
   %27 = load i32, ptr %20
   %28 = add i32 %26, %27
   store i32 %28, ptr %25
-  br label %bb7
+  br label %bb6
 
-bb7:
+bb6:
   ret void
 
 }
