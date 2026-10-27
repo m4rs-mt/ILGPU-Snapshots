@@ -19,6 +19,7 @@ entry:
   call void @ilgpu.barrier.group()
   %5 = getelementptr i32, ptr %0, i32 %1
   %6 = load i32, ptr %5
+  call void @ilgpu.barrier.group()
   %7 = call i32 @ilgpu.shuffle.bfly(i32 %6, i32 16)
   %8 = add i32 %6, %7
   %9 = call i32 @ilgpu.shuffle.bfly(i32 %8, i32 8)

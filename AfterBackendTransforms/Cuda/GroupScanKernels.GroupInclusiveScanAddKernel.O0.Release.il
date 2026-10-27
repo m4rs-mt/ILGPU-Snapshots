@@ -36,6 +36,7 @@ entry:
   call void @ilgpu.barrier.group()
   %21 = getelementptr i32, ptr %0, i32 %1
   %22 = load i32, ptr %21
+  call void @ilgpu.barrier.group()
   %23 = call i32 @ilgpu.shuffle.up(i32 %22, i32 1)
   %24 = call i32 @ilgpu.subgroup.lane()
   %25 = icmp sge i32 %24, 1

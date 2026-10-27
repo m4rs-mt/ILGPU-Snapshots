@@ -19,6 +19,7 @@ entry:
   call void @ilgpu.barrier.group()
   %6 = getelementptr i32, ptr %0, i32 %1
   %7 = load i32, ptr %6
+  call void @ilgpu.barrier.group()
   %8 = call i32 @ilgpu.warp.reduce.Reduce.Add(i32 %7)
   %9 = getelementptr i32, ptr %p1, i32 %p0
   store i32 %8, ptr %9
