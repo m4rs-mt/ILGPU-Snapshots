@@ -33,26 +33,26 @@ entry:
   %24 = or i1 %20, %23
   %25 = call ptr @ilgpu.string("X_index_out_of_bounds")
   call void @ilgpu.debug.assert(i1 %24, ptr %25)
-  %26 = icmp sge i64 %p7, -2147483648
-  %27 = icmp sle i64 %p7, 2147483647
-  %28 = and i1 %26, %27
-  %29 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  call void @ilgpu.debug.assert(i1 %28, ptr %29)
-  %30 = icmp sge i32 %p0, 0
-  %31 = trunc i64 %p7 to i32
-  %32 = icmp slt i32 %p0, %31
-  %33 = and i1 %30, %32
-  %34 = icmp eq i32 %p0, 0
-  %35 = icmp eq i32 %31, 0
-  %36 = and i1 %34, %35
-  %37 = or i1 %33, %36
-  %38 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  call void @ilgpu.debug.assert(i1 %37, ptr %38)
-  %39 = getelementptr i64, ptr %p5, i32 %p0
-  %40 = load i64, ptr %39
-  %41 = getelementptr i64, ptr %p1, i32 %p0
+  %26 = getelementptr i64, ptr %p1, i32 %p0
+  %27 = load i64, ptr %26
+  %28 = icmp sge i64 %p7, -2147483648
+  %29 = icmp sle i64 %p7, 2147483647
+  %30 = and i1 %28, %29
+  %31 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  call void @ilgpu.debug.assert(i1 %30, ptr %31)
+  %32 = icmp sge i32 %p0, 0
+  %33 = trunc i64 %p7 to i32
+  %34 = icmp slt i32 %p0, %33
+  %35 = and i1 %32, %34
+  %36 = icmp eq i32 %p0, 0
+  %37 = icmp eq i32 %33, 0
+  %38 = and i1 %36, %37
+  %39 = or i1 %35, %38
+  %40 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  call void @ilgpu.debug.assert(i1 %39, ptr %40)
+  %41 = getelementptr i64, ptr %p5, i32 %p0
   %42 = load i64, ptr %41
-  %43 = icmp slt i64 %42, %40
+  %43 = icmp slt i64 %27, %42
   %44 = getelementptr i32, ptr %p9, i32 %p0
   br i1 %43, label %bb2, label %bb1
 

@@ -40,32 +40,32 @@ entry:
   %26 = or i1 %22, %25
   %27 = call ptr @ilgpu.string("X_index_out_of_bounds")
   call void @ilgpu.debug.assert(i1 %26, ptr %27)
-  %28 = extractvalue %struct.1 %p2, 2
-  %29 = icmp sge i64 %28, -2147483648
-  %30 = icmp sle i64 %28, 2147483647
-  %31 = and i1 %29, %30
-  %32 = call ptr @ilgpu.string("32_bit_index_out_of_range")
-  call void @ilgpu.debug.assert(i1 %31, ptr %32)
-  %33 = icmp sge i32 %p0, 0
-  %34 = trunc i64 %28 to i32
-  %35 = icmp slt i32 %p0, %34
-  %36 = and i1 %33, %35
-  %37 = icmp eq i32 %p0, 0
-  %38 = icmp eq i32 %34, 0
-  %39 = and i1 %37, %38
-  %40 = or i1 %36, %39
-  %41 = call ptr @ilgpu.string("X_index_out_of_bounds")
-  call void @ilgpu.debug.assert(i1 %40, ptr %41)
-  %42 = extractvalue %struct.1 %p2, 0 [Span: 2]
-  %43 = extractvalue %struct.0 %42, 0
-  %44 = getelementptr i8, ptr %43, i32 %p0
-  %45 = load i8, ptr %44
-  %46 = extractvalue %struct.1 %p1, 0 [Span: 2]
+  %28 = extractvalue %struct.1 %p1, 0 [Span: 2]
+  %29 = extractvalue %struct.0 %28, 0
+  %30 = getelementptr i8, ptr %29, i32 %p0
+  %31 = load i8, ptr %30
+  %32 = extractvalue %struct.1 %p2, 2
+  %33 = icmp sge i64 %32, -2147483648
+  %34 = icmp sle i64 %32, 2147483647
+  %35 = and i1 %33, %34
+  %36 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  call void @ilgpu.debug.assert(i1 %35, ptr %36)
+  %37 = icmp sge i32 %p0, 0
+  %38 = trunc i64 %32 to i32
+  %39 = icmp slt i32 %p0, %38
+  %40 = and i1 %37, %39
+  %41 = icmp eq i32 %p0, 0
+  %42 = icmp eq i32 %38, 0
+  %43 = and i1 %41, %42
+  %44 = or i1 %40, %43
+  %45 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  call void @ilgpu.debug.assert(i1 %44, ptr %45)
+  %46 = extractvalue %struct.1 %p2, 0 [Span: 2]
   %47 = extractvalue %struct.0 %46, 0
   %48 = getelementptr i8, ptr %47, i32 %p0
   %49 = load i8, ptr %48
-  %50 = zext i8 %49 to i32
-  %51 = zext i8 %45 to i32
+  %50 = zext i8 %31 to i32
+  %51 = zext i8 %49 to i32
   %52 = icmp slt i32 %50, %51
   %53 = extractvalue %struct.3 %p3, 0 [Span: 2]
   %54 = extractvalue %struct.2 %53, 0
