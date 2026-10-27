@@ -27,18 +27,12 @@ entry:
   %16 = icmp sgt i32 %p2, 100
   %17 = icmp sgt i32 %p2, 200
   %18 = and i1 %16, %17
-  %19 = icmp sgt i32 %p2, 300
+  %19 = icmp sle i32 %p2, 300
   %20 = and i1 %18, %19
-  %21 = icmp sle i32 %p2, 300
-  %22 = and i1 %18, %21
-  %23 = or i1 %20, %22
-  %24 = icmp sle i32 %p2, 200
-  %25 = and i1 %16, %24
-  %26 = or i1 %23, %25
-  %27 = select i1 %22, i32 3, i32 4
-  %28 = select i1 %23, i32 %27, i32 2
-  %29 = select i1 %26, i32 %28, i32 1
-  store i32 %29, ptr %15
+  %21 = select i1 %20, i32 3, i32 4
+  %22 = select i1 %18, i32 %21, i32 2
+  %23 = select i1 %16, i32 %22, i32 1
+  store i32 %23, ptr %15
   ret void
 
 }

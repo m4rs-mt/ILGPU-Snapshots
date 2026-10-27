@@ -7,30 +7,24 @@
 define void @MixedNesting2Kernel(i32 %p0, %struct.0 %p1, i32 %p2, i32 %p3, i32 %p4) {
 entry:
   %0 = icmp sle i32 %p2, 0
-  %1 = icmp sgt i32 %p3, 0
-  %2 = or i1 %0, %1
-  %3 = icmp sle i32 %p2, 0
-  %4 = icmp sle i32 %p3, 0
-  %5 = or i1 %3, %4
-  %6 = and i1 %2, %5
-  %7 = icmp sle i32 %p2, 0
-  %8 = icmp sle i32 %p3, 0
-  %9 = or i1 %7, %8
-  %10 = icmp sle i32 %p4, 0
-  %11 = and i1 %9, %10
-  %12 = or i1 %6, %11
-  %13 = extractvalue %struct.0 %p1, 0
-  %14 = getelementptr i32, ptr %13, i32 %p0
-  %15 = extractvalue %struct.0 %p1, 0
-  %16 = getelementptr i32, ptr %15, i32 %p0
-  br i1 %12, label %bb2, label %bb1
+  %1 = icmp sle i32 %p2, 0
+  %2 = icmp sle i32 %p3, 0
+  %3 = or i1 %1, %2
+  %4 = icmp sle i32 %p4, 0
+  %5 = and i1 %3, %4
+  %6 = or i1 %0, %5
+  %7 = extractvalue %struct.0 %p1, 0
+  %8 = getelementptr i32, ptr %7, i32 %p0
+  %9 = extractvalue %struct.0 %p1, 0
+  %10 = getelementptr i32, ptr %9, i32 %p0
+  br i1 %6, label %bb2, label %bb1
 
 bb1:
-  store i32 1, ptr %14
+  store i32 1, ptr %8
   br label %bb3
 
 bb2:
-  store i32 0, ptr %16
+  store i32 0, ptr %10
   br label %bb3
 
 bb3:
