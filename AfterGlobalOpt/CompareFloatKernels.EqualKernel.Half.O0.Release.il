@@ -3,8 +3,8 @@
 
 %view.i32 = view i32
 %struct.0 = type { %view.i32, i64, i8 }
-%view.i16 = view i16
-%struct.1 = type { %view.i16, i64, i8 }
+%view.half = view half
+%struct.1 = type { %view.half, i64, i8 }
 
 define void @EqualKernel(i32 %p0, %struct.1 %p1, %struct.1 %p2, %struct.0 %p3) {
 entry:
@@ -16,15 +16,15 @@ entry:
   store %struct.0 %p3, ptr %2
   %3 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %2)
   %4 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %2, i32 %p0)
-  %5 = call %view.i16 @get_BaseView(ptr<%struct.1> addrspace(local) %0)
+  %5 = call %view.half @get_BaseView(ptr<%struct.1> addrspace(local) %0)
   %6 = call i32 @ComputeLinearIndex(ptr<%struct.1> addrspace(local) %0, i32 %p0)
-  %7 = getelementptr i16, ptr %5, i32 %6
-  %8 = load i16, ptr %7
-  %9 = call %view.i16 @get_BaseView(ptr<%struct.1> addrspace(local) %1)
+  %7 = getelementptr half, ptr %5, i32 %6
+  %8 = load half, ptr %7
+  %9 = call %view.half @get_BaseView(ptr<%struct.1> addrspace(local) %1)
   %10 = call i32 @ComputeLinearIndex(ptr<%struct.1> addrspace(local) %1, i32 %p0)
-  %11 = getelementptr i16, ptr %9, i32 %10
-  %12 = load i16, ptr %11
-  %13 = icmp eq i16 %8, %12
+  %11 = getelementptr half, ptr %9, i32 %10
+  %12 = load half, ptr %11
+  %13 = fcmp oeq half %8, %12
   %14 = getelementptr i32, ptr %3, i32 %4
   br i1 %13, label %bb2, label %bb1
 
@@ -63,11 +63,11 @@ entry:
 
 }
 
-define %view.i16 @get_BaseView(ptr<%struct.1> addrspace(local) %p0) {
+define %view.half @get_BaseView(ptr<%struct.1> addrspace(local) %p0) {
 entry:
   %0 = getelementptr inbounds %struct.1, ptr %p0, i32 0, i32 0
-  %1 = load %view.i16, ptr %0
-  ret %view.i16 %1
+  %1 = load %view.half, ptr %0
+  ret %view.half %1
 
 }
 

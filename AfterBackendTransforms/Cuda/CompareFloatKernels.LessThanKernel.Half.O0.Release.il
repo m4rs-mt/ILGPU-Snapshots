@@ -1,8 +1,8 @@
 ; stage: AfterBackendTransforms  backend: Cuda  opt: O0
 ; module: LessThanKernel  [intptr: i64]
 
-%struct.0 = type { ptr<i16>, i64 }
-%struct.1 = type { ptr<i16>, i64, i64, i8 }
+%struct.0 = type { ptr<half>, i64 }
+%struct.1 = type { ptr<half>, i64, i64, i8 }
 %struct.2 = type { ptr<i32>, i64 }
 %struct.3 = type { ptr<i32>, i64, i64, i8 }
 
@@ -10,13 +10,13 @@ define void @LessThanKernel(i32 %p0, %struct.1 %p1, %struct.1 %p2, %struct.3 %p3
 entry:
   %0 = extractvalue %struct.1 %p1, 0 [Span: 2]
   %1 = extractvalue %struct.0 %0, 0
-  %2 = getelementptr i16, ptr %1, i32 %p0
-  %3 = load i16, ptr %2
+  %2 = getelementptr half, ptr %1, i32 %p0
+  %3 = load half, ptr %2
   %4 = extractvalue %struct.1 %p2, 0 [Span: 2]
   %5 = extractvalue %struct.0 %4, 0
-  %6 = getelementptr i16, ptr %5, i32 %p0
-  %7 = load i16, ptr %6
-  %8 = icmp slt i16 %3, %7
+  %6 = getelementptr half, ptr %5, i32 %p0
+  %7 = load half, ptr %6
+  %8 = fcmp olt half %3, %7
   %9 = extractvalue %struct.3 %p3, 0 [Span: 2]
   %10 = extractvalue %struct.2 %9, 0
   %11 = getelementptr i32, ptr %10, i32 %p0

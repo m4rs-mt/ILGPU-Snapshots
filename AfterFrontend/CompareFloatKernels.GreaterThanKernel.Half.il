@@ -1,7 +1,7 @@
 ; module: GreaterThanKernel  [intptr: i64]
 
-%view.i16 = view i16
-%struct.0 = type { %view.i16, i64, i8 }
+%view.half = view half
+%struct.0 = type { %view.half, i64, i8 }
 %view.i32 = view i32
 %struct.1 = type { %view.i32, i64, i8 }
 
@@ -20,11 +20,11 @@ entry:
 
 bb1:
   %6 = call ptr<i32> @get_Item(ptr<%struct.1> %3, i32 %p0)
-  %7 = call ptr<i16> @get_Item(ptr<%struct.0> %4, i32 %p0)
-  %8 = load i16, ptr %7
-  %9 = call ptr<i16> @get_Item(ptr<%struct.0> %5, i32 %p0)
-  %10 = load i16, ptr %9
-  %11 = icmp sgt i16 %8, %10
+  %7 = call ptr<half> @get_Item(ptr<%struct.0> %4, i32 %p0)
+  %8 = load half, ptr %7
+  %9 = call ptr<half> @get_Item(ptr<%struct.0> %5, i32 %p0)
+  %10 = load half, ptr %9
+  %11 = fcmp ogt half %8, %10
   br i1 %11, label %bb3, label %bb2
 
 bb2:
@@ -41,20 +41,20 @@ bb4:
 
 }
 
-define ptr<i16> @get_Item(ptr<%struct.0> %p0, i32 %p1) {
+define ptr<half> @get_Item(ptr<%struct.0> %p0, i32 %p1) {
 entry:
-  %0 = alloca %view.i16, i32 1
-  store %view.i16 null, ptr %0
-  %1 = addrspacecast ptr %0 to ptr<%view.i16>
+  %0 = alloca %view.half, i32 1
+  store %view.half null, ptr %0
+  %1 = addrspacecast ptr %0 to ptr<%view.half>
   br label %bb1
 
 bb1:
-  %2 = call %view.i16 @get_BaseView(ptr<%struct.0> %p0)
-  store %view.i16 %2, ptr %0
+  %2 = call %view.half @get_BaseView(ptr<%struct.0> %p0)
+  store %view.half %2, ptr %0
   %3 = call i32 @ComputeLinearIndex(ptr<%struct.0> %p0, i32 %p1)
-  %4 = load %view.i16, ptr %1
-  %5 = getelementptr i16, ptr %4, i32 %3
-  ret ptr<i16> %5
+  %4 = load %view.half, ptr %1
+  %5 = getelementptr half, ptr %4, i32 %3
+  ret ptr<half> %5
 
 }
 
@@ -111,14 +111,14 @@ bb1:
 
 }
 
-define %view.i16 @get_BaseView(ptr<%struct.0> %p0) {
+define %view.half @get_BaseView(ptr<%struct.0> %p0) {
 entry:
   %0 = getelementptr inbounds %struct.0, ptr %p0, i32 0, i32 0
   br label %bb1
 
 bb1:
-  %1 = load %view.i16, ptr %0
-  ret %view.i16 %1
+  %1 = load %view.half, ptr %0
+  ret %view.half %1
 
 }
 
