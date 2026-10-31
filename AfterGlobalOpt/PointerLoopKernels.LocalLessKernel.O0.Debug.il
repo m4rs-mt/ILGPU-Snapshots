@@ -1,0 +1,123 @@
+; stage: AfterGlobalOpt  opt: O0
+; module: LocalLessKernel  [intptr: i64]
+
+%view.i32 = view i32
+%struct.0 = type { %view.i32, i64, i8 }
+%struct.1 = type { i32, i32, i32, i32 }
+
+define void @LocalLessKernel(i32 %p0, %struct.0 %p1) {
+entry:
+  %0 = alloca %struct.0, i32 1
+  store %struct.0 %p1, ptr %0
+  %1 = alloca %struct.1, i32 1
+  store %struct.1 null, ptr %1
+  %2 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %0)
+  %3 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
+  %4 = getelementptr i32, ptr %2, i32 %3
+  %5 = getelementptr inbounds %struct.1, ptr %1, i32 0, i32 0
+  %6 = getelementptr inbounds %struct.1, ptr %1, i32 0, i32 1
+  %7 = getelementptr inbounds %struct.1, ptr %1, i32 0, i32 2
+  %8 = getelementptr inbounds %struct.1, ptr %1, i32 0, i32 3
+  %9 = getelementptr inbounds %struct.1, ptr %1, i32 0, i32 0
+  %10 = getelementptr inbounds %struct.1, ptr %1, i32 0, i32 0
+  %11 = getelementptr i32, ptr %10, i32 4
+  br label %bb1
+
+bb1:
+  %12 = load i32, ptr %4
+  store i32 %12, ptr %5
+  store i32 2, ptr %6
+  store i32 3, ptr %7
+  store i32 4, ptr %8
+  br label %bb2
+
+bb2:
+  %13 = phi ptr<i32> addrspace(local) [ %9, %bb1 ], [ %15, %bb4 ]
+  %14 = phi i32 [ 0, %bb1 ], [ %21, %bb4 ]
+  %15 = getelementptr i32, ptr %13, i32 1
+  %16 = icmp ult ptr<i32> addrspace(local) %13, %11
+  br i1 %16, label %bb4, label %bb3
+
+bb3:
+  %17 = call %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %0)
+  %18 = call i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %0, i32 %p0)
+  %19 = getelementptr i32, ptr %17, i32 %18
+  store i32 %14, ptr %19
+  ret void
+
+bb4:
+  %20 = load i32, ptr %13
+  %21 = add i32 %14, %20
+  br label %bb2
+
+}
+
+define i32 @ComputeLinearIndex(ptr<%struct.0> addrspace(local) %p0, i32 %p1) {
+entry:
+  %0 = getelementptr inbounds %struct.0, ptr %p0, i32 0, i32 2
+  %1 = load i8, ptr %0
+  %2 = alloca i64, i32 1
+  store i64 0, ptr %2
+  %3 = call i64 @get_Extent(ptr<%struct.0> addrspace(local) %p0)
+  store i64 %3, ptr %2
+  %4 = call i32 @ToIntIndex(ptr<i64> addrspace(local) %2)
+  %5 = call i32 @ComputeElementIndexChecked(i8 %1, i32 %p1, i32 %4)
+  ret i32 %5
+
+}
+
+define i32 @ComputeElementIndexChecked(i8 %p0, i32 %p1, i32 %p2) {
+entry:
+  %0 = icmp sge i32 %p1, 0
+  %1 = icmp slt i32 %p1, %p2
+  %2 = and i1 %0, %1
+  %3 = icmp eq i32 %p1, 0
+  %4 = icmp eq i32 %p2, 0
+  %5 = and i1 %3, %4
+  %6 = or i1 %2, %5
+  %7 = call ptr @ilgpu.string("X_index_out_of_bounds")
+  call void @ilgpu.debug.assert(i1 %6, ptr %7)
+  %8 = alloca i32, i32 1
+  store i32 %p1, ptr %8
+  %9 = call i32 @get_X(ptr<i32> addrspace(local) %8)
+  ret i32 %9
+
+}
+
+define i32 @get_X(ptr<i32> addrspace(local) %p0) {
+entry:
+  %0 = load i32, ptr %p0
+  ret i32 %0
+
+}
+
+define i32 @ToIntIndex(ptr<i64> addrspace(local) %p0) {
+entry:
+  %0 = load i64, ptr %p0
+  %1 = icmp sge i64 %0, -2147483648
+  %2 = icmp sle i64 %0, 2147483647
+  %3 = and i1 %1, %2
+  %4 = call ptr @ilgpu.string("32_bit_index_out_of_range")
+  call void @ilgpu.debug.assert(i1 %3, ptr %4)
+  %5 = load i64, ptr %p0
+  %6 = trunc i64 %5 to i32
+  ret i32 %6
+
+}
+
+define i64 @get_Extent(ptr<%struct.0> addrspace(local) %p0) {
+entry:
+  %0 = getelementptr inbounds %struct.0, ptr %p0, i32 0, i32 1
+  %1 = load i64, ptr %0
+  ret i64 %1
+
+}
+
+define %view.i32 @get_BaseView(ptr<%struct.0> addrspace(local) %p0) {
+entry:
+  %0 = getelementptr inbounds %struct.0, ptr %p0, i32 0, i32 0
+  %1 = load %view.i32, ptr %0
+  ret %view.i32 %1
+
+}
+
