@@ -6,13 +6,14 @@
 
 @g0 = internal global i32 zeroinitializer ; local
 @g1 = internal global i32 zeroinitializer ; local
+@g2 = internal global i32 zeroinitializer ; local
 
 define void @FixedSelectKernel(i32 %p0, %struct.0 %p1) {
 entry:
   %0 = and i32 %p0, 1
   %1 = icmp eq i32 %0, 0
-  %2 = call array<i32, 1> @ilgpu.array.new(ptr @g0, i32 4)
-  %3 = call array<i32, 1> @ilgpu.array.new(ptr @g1, i32 2)
+  %2 = call array<i32, 1> @ilgpu.array.new(ptr @g1, i32 4)
+  %3 = call array<i32, 1> @ilgpu.array.new(ptr @g2, i32 2)
   %4 = select i1 %1, array<i32, 1> %2, array<i32, 1> %3
   %5 = call i32 @ilgpu.array.length(array<i32, 1> %4)
   %6 = extractvalue %struct.0 %p1, 1
@@ -49,7 +50,7 @@ entry:
   %37 = call ptr @ilgpu.string("X_index_out_of_bounds")
   %38 = extractvalue %struct.0 %p1, 0
   %39 = getelementptr i32, ptr %38, i32 %28
-  %40 = call array<i32, 1> @ilgpu.array.new(ptr undef, i32 0)
+  %40 = call array<i32, 1> @ilgpu.array.new(ptr @g0, i32 0)
   %41 = call i32 @ilgpu.array.length(array<i32, 1> %40)
   %42 = icmp ne i32 %41, 0
   %43 = getelementptr i32, ptr %40, i32 0

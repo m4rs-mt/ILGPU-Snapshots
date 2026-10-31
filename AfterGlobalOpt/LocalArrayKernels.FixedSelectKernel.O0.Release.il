@@ -6,6 +6,7 @@
 
 @g0 = internal global i32 zeroinitializer ; local
 @g1 = internal global i32 zeroinitializer ; local
+@g2 = internal global i32 zeroinitializer ; local
 
 define void @FixedSelectKernel(i32 %p0, %struct.0 %p1) {
 entry:
@@ -13,9 +14,9 @@ entry:
   store %struct.0 %p1, ptr %0
   %1 = and i32 %p0, 1
   %2 = icmp eq i32 %1, 0
-  %3 = call array<i32, 1> @ilgpu.array.new(ptr @g0, i32 2)
-  %4 = call array<i32, 1> @ilgpu.array.new(ptr @g1, i32 4)
-  %5 = call array<i32, 1> @ilgpu.array.new(ptr undef, i32 0)
+  %3 = call array<i32, 1> @ilgpu.array.new(ptr @g1, i32 2)
+  %4 = call array<i32, 1> @ilgpu.array.new(ptr @g2, i32 4)
+  %5 = call array<i32, 1> @ilgpu.array.new(ptr @g0, i32 0)
   %6 = call i32 @ilgpu.array.length(array<i32, 1> %5)
   %7 = icmp ne i32 %6, 0
   %8 = getelementptr i32, ptr %5, i32 0
